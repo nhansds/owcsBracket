@@ -36,11 +36,11 @@
           <p class="mb-2 text-[10px] font-semibold uppercase tracking-[0.2em] text-slate-500">
             Roster
           </p>
-          <div class="flex flex-wrap gap-1.5">
+          <div class="flex flex-wrap gap-1">
             <span
               v-for="player in team.roster"
               :key="player.name"
-              class="flex items-center gap-1.5 rounded-md border border-white/10 bg-white/5 px-2 py-0.5 text-[10px] font-medium text-slate-300"
+              class="flex items-center gap-1 rounded-md border border-white/10 bg-white/5 px-1 py-1 text-xs font-semibold text-slate-200"
             >
               <img
                 class="h-3 w-3 object-contain"

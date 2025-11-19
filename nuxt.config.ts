@@ -3,13 +3,9 @@ export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
   css: ['~/assets/css/tailwind.css'],
-  postcss: {
-    plugins: {
-      tailwindcss: {},
-      autoprefixer: {}
-    }
-  },
   app: {
+    baseURL: '/owcsBracket/',
+    buildAssetsDir: '/_nuxt/',
     head: {
       titleTemplate: '%s · OWCS Bracket Builder',
       title: 'OWCS 2025 World Finals Bracket',
@@ -44,5 +40,17 @@ export default defineNuxtConfig({
         }
       ]
     }
+  },
+  postcss: {
+    plugins: {
+      tailwindcss: {},
+      autoprefixer: {}
+    }
+  },
+  nitro: {
+    preset: 'github-pages'
+  },
+  routeRules: {
+    '/**': { prerender: true }
   }
 })
