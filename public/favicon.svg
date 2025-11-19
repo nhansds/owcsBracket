@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <!-- Background -->
+  <rect width="64" height="64" fill="#111320" rx="8"/>
+  
+  <!-- OWCS Text -->
+  <text x="32" y="42" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#ff5470" text-anchor="middle" letter-spacing="2">OWCS</text>
+  
+  <!-- Decorative accent line -->
+  <line x1="12" y1="16" x2="52" y2="16" stroke="#ff5470" stroke-width="2" stroke-linecap="round"/>
+</svg>
+
