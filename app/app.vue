@@ -23,6 +23,22 @@
         class="flex flex-col gap-2 rounded-2xl border border-white/10 bg-white/5 px-6 py-4 text-sm text-slate-300 shadow-inner shadow-black/20 sm:flex-row sm:items-center sm:justify-between"
       >
         <span class="font-medium text-white">Made with ❤️ by Nhans</span>
+        <div class="flex items-center gap-3 font-medium text-white">
+          <img
+            src="/teams/41px-Team_Peps_July_2022_allmode.png"
+            alt="Team Peps logo"
+            class="h-8 w-8 rounded-lg border border-white/10 bg-white/10 object-contain p-1"
+          />
+          <span class="flex items-center gap-2">
+            Go Team Peps!
+            <img
+              src="https://upload.wikimedia.org/wikipedia/en/c/c3/Flag_of_France.svg"
+              alt="French flag"
+              class="h-4 w-6 rounded-sm border border-white/20 object-cover"
+              loading="lazy"
+            />
+          </span>
+        </div>
         <div class="flex flex-wrap items-center gap-4 text-xs uppercase tracking-[0.2em]">
           <a
             href="https://github.com/nhansds"
