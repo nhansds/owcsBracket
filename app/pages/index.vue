@@ -1,62 +1,68 @@
 <template>
   <div class="space-y-10">
-    <section
-      class="grid gap-6 rounded-3xl border border-white/15 bg-white/10 p-6 shadow-inner lg:grid-cols-[2.5fr,1fr]"
-    >
-      <div class="space-y-3">
-        <h2 class="text-2xl font-semibold">Bracket rules</h2>
-        <p class="text-sm text-slate-300">
-          The OWCS 2025 World Finals use a 12-team double-elimination bracket. Regional top seeds
-          start directly in round two, opening matches are played
-          <span class="font-semibold text-secondary-200">First to 2</span>, the rest are
-          <span class="font-semibold text-secondary-200">First to 3</span> except the Grand Final,
-          which is played <span class="font-semibold text-secondary-200">First to 4</span>.
-        </p>
-        <p class="text-sm text-slate-300">
-          Click any team to pick a winner, then set the score. Every result automatically propagates
-          to the next matches.
-        </p>
-      </div>
-      <aside
-        class="flex flex-col gap-4 rounded-2xl border border-white/15 bg-slate-900/60 p-4 text-sm shadow-glow"
+    <div class="space-y-6">
+      <section
+        class="grid gap-6 rounded-3xl border border-white/15 bg-white/10 p-6 shadow-inner lg:grid-cols-[2.5fr,1fr]"
       >
-        <div class="flex items-center justify-between">
-          <span class="text-slate-400">Total matches</span>
-          <span class="font-semibold text-white">{{ matches.length }}</span>
+        <div class="space-y-3">
+          <h2 class="text-2xl font-semibold">Bracket rules</h2>
+          <p class="text-sm text-slate-300">
+            The OWCS 2025 World Finals use a 12-team double-elimination bracket. Regional top seeds
+            start directly in round two, opening matches are played
+            <span class="font-semibold text-secondary-200">First to 2</span>, the rest are
+            <span class="font-semibold text-secondary-200">First to 3</span> except the Grand Final,
+            which is played <span class="font-semibold text-secondary-200">First to 4</span>.
+          </p>
+          <p class="text-sm text-slate-300">
+            Click any team to pick a winner, then set the score. Every result automatically propagates
+            to the next matches.
+          </p>
         </div>
-        <div class="flex items-center justify-between">
-          <span class="text-slate-400">Matches completed</span>
-          <span class="font-semibold text-white">{{ completedMatches }}</span>
-        </div>
-        <button
-          type="button"
-          class="rounded-xl border border-white/15 bg-white/15 px-4 py-2 text-sm font-semibold text-white transition hover:bg-white/25"
-          @click="resetBracket"
+        <aside
+          class="flex flex-col gap-4 rounded-2xl border border-white/15 bg-slate-900/60 p-4 text-sm shadow-glow"
         >
-          Reset all
-        </button>
-        <div class="space-y-2">
-          <label class="text-xs uppercase tracking-[0.3em] text-slate-500">Shareable link</label>
-          <div class="flex gap-2">
-            <input
-              :value="shareUrl"
-              readonly
-              class="flex-1 truncate rounded-xl border border-stroke bg-slate-950/60 px-3 py-2 text-[13px] text-white"
-            />
-            <button
-              type="button"
-              class="rounded-xl bg-primary/80 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-white transition hover:bg-primary"
-              @click="copyShareLink"
-            >
-              Copy
-            </button>
+          <div class="flex items-center justify-between">
+            <span class="text-slate-400">Total matches</span>
+            <span class="font-semibold text-white">{{ matches.length }}</span>
           </div>
-        </div>
-        <p v-if="shareStatus" class="text-xs text-secondary-200">
-          {{ shareStatus }}
-        </p>
-      </aside>
-    </section>
+          <div class="flex items-center justify-between">
+            <span class="text-slate-400">Matches completed</span>
+            <span class="font-semibold text-white">{{ completedMatches }}</span>
+          </div>
+          <button
+            type="button"
+            class="rounded-xl border border-white/15 bg-white/15 px-4 py-2 text-sm font-semibold text-white transition hover:bg-white/25"
+            @click="resetBracket"
+          >
+            Reset all
+          </button>
+          <div class="space-y-2">
+            <label class="text-xs uppercase tracking-[0.3em] text-slate-500">Shareable link</label>
+            <div class="flex gap-2">
+              <input
+                :value="shareUrl"
+                readonly
+                class="flex-1 truncate rounded-xl border border-stroke bg-slate-950/60 px-3 py-2 text-[13px] text-white"
+              />
+              <button
+                type="button"
+                class="rounded-xl bg-primary/80 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-white transition hover:bg-primary"
+                @click="copyShareLink"
+              >
+                Copy
+              </button>
+            </div>
+          </div>
+          <p v-if="shareStatus" class="text-xs text-secondary-200">
+            {{ shareStatus }}
+          </p>
+        </aside>
+      </section>
+
+      <section class="rounded-3xl border border-white/15 bg-white/10 p-6 shadow-inner">
+        <TeamsList />
+      </section>
+    </div>
 
     <div ref="bracketRef">
       <BracketTree
@@ -71,6 +77,7 @@
 <script setup lang="ts">
 import { computed, onMounted, ref, watch } from 'vue'
 import BracketTree from '../../app/components/BracketTree.vue'
+import TeamsList from '../../app/components/TeamsList.vue'
 import { useBracket } from '../../app/composables/useBracket'
 import type { HydratedMatch } from '../../app/types/bracket'
 import { useRoute, useRouter } from 'vue-router'

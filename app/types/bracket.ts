@@ -2,6 +2,13 @@ export type SeriesFormat = 'FT2' | 'FT3' | 'FT4'
 
 export type MatchStage = 'upper' | 'lower' | 'final'
 
+export type PlayerRole = 'tank' | 'damage' | 'support'
+
+export interface Player {
+  name: string
+  role: PlayerRole
+}
+
 export interface Team {
   id: string
   name: string
@@ -10,7 +17,8 @@ export interface Team {
   placement: string
   seed: number
   accent: string
-  roster: string[]
+  logo: string
+  roster: Player[]
 }
 
 export type MatchSlotSource =

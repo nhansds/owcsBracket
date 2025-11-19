@@ -18,27 +18,41 @@
         :class="rowClasses(index, team)"
         @click="() => selectWinner(index)"
       >
-        <div
-          class="h-2 w-2 rounded-full"
-          :style="{ backgroundColor: team?.accent ?? '#4b5563' }"
-        />
-        <div class="flex flex-1 flex-col text-left">
-          <span class="text-sm font-medium">
-            {{ team?.name ?? 'TBD' }}
-          </span>
-          <span class="text-[11px] text-slate-400">
-            {{ team ? `${team.region}` : 'TBD' }}
-          </span>
-        </div>
+          <div
+            class="flex h-8 w-8 items-center justify-center rounded-full border border-white/10 bg-slate-900/70"
+          >
+            <img
+              v-if="team?.logo"
+              :src="team.logo"
+              :alt="`${team?.shortName ?? 'Team'} logo`"
+              class="h-6 w-6 object-contain"
+              loading="lazy"
+            />
+            <div
+              v-else
+              class="h-2 w-2 rounded-full"
+              :style="{ backgroundColor: team?.accent ?? '#4b5563' }"
+            />
+          </div>
+          <div class="flex flex-1 flex-col text-left">
+            <span class="text-sm font-medium">
+              {{ team?.name ?? 'TBD' }}
+            </span>
+            <span class="text-[11px] text-slate-400">
+              {{ team ? `${team.region}` : 'TBD' }}
+            </span>
+          </div>
         <input
-          type="number"
-          min="0"
-          max="4"
-          step="1"
-          :disabled="!team"
-          :value="scoreValue(index)"
-          class="h-10 w-12 rounded-lg border border-stroke bg-transparent text-center text-base font-semibold text-white focus:border-primary focus:outline-none disabled:opacity-40"
-          @input="event => updateScore(index, (event.target as HTMLInputElement).value)"
+            type="number"
+            min="0"
+          :max="match.targetScore"
+            step="1"
+            :disabled="!team"
+            :value="scoreValue(index)"
+            class="h-11 w-16 rounded-lg border border-stroke bg-transparent text-center text-lg font-semibold text-white focus:border-primary focus:outline-none disabled:opacity-40"
+            @input="event => updateScore(index, (event.target as HTMLInputElement).value)"
+            @click.stop
+          @mousedown.stop
         />
       </button>
     </div>
@@ -81,10 +95,27 @@ const rowClasses = (index: number, team: HydratedMatch['participants'][number]) 
 const scoreValue = (index: number) => props.match.result.score[index] ?? ''
 
 const updateScore = (index: number, rawValue: string) => {
-  const parsed = rawValue === '' ? null : Number(rawValue)
+  const parsed =
+    rawValue === '' ? null : Math.max(0, Math.min(props.match.targetScore, Number(rawValue)))
   const nextScore = [...props.match.result.score] as [number | null, number | null]
   nextScore[index] = parsed
-  setMatchResult(props.match.id, { score: nextScore })
+  
+  // If the score reaches the target score, automatically set as winner
+  if (parsed !== null && parsed === props.match.targetScore) {
+    const opponentIndex = index === 0 ? 1 : 0
+    if (
+      nextScore[opponentIndex] !== null &&
+      Number(nextScore[opponentIndex]) >= props.match.targetScore
+    ) {
+      nextScore[opponentIndex] = Math.max(props.match.targetScore - 1, 0)
+    }
+    setMatchResult(props.match.id, {
+      winnerSlot: index as 0 | 1,
+      score: nextScore
+    })
+  } else {
+    setMatchResult(props.match.id, { score: nextScore })
+  }
 }
 
 const selectWinner = (index: number) => {

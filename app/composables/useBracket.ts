@@ -25,25 +25,40 @@ const defaultResult = (): MatchResult => ({
   score: [null, null]
 })
 
-const base64urlEncode = (payload: string) => {
-  if (typeof window === 'undefined') {
-    return Buffer.from(payload, 'utf-8').toString('base64url')
+const base64urlFromBytes = (bytes: Uint8Array) => {
+  if (!bytes.length) {
+    return ''
   }
-  return window
-    .btoa(payload)
-    .replace(/\+/g, '-')
-    .replace(/\//g, '_')
+  if (globalThis.window === undefined) {
+    return Buffer.from(bytes).toString('base64url')
+  }
+  let binary = ''
+  for (const byte of bytes) {
+    binary += String.fromCodePoint(byte)
+  }
+  return globalThis.window
+    .btoa(binary)
+    .replaceAll('+', '-')
+    .replaceAll('/', '_')
     .replace(/=+$/, '')
 }
 
-const base64urlDecode = (payload: string) => {
-  const normalized = payload.replace(/-/g, '+').replace(/_/g, '/')
-  if (typeof window === 'undefined') {
-    return Buffer.from(normalized, 'base64').toString('utf-8')
+const bytesFromBase64url = (payload: string) => {
+  if (!payload) {
+    return new Uint8Array()
   }
+  if (globalThis.window === undefined) {
+    return new Uint8Array(Buffer.from(payload, 'base64url'))
+  }
+  const normalized = payload.replaceAll('-', '+').replaceAll('_', '/')
   const pad = normalized.length % 4
   const padded = pad ? normalized + '='.repeat(4 - pad) : normalized
-  return window.atob(padded)
+  const binary = globalThis.window.atob(padded)
+  const bytes = new Uint8Array(binary.length)
+  for (let index = 0; index < binary.length; index += 1) {
+    bytes[index] = binary.codePointAt(index) ?? 0
+  }
+  return bytes
 }
 
 export const useBracket = () => {
@@ -76,11 +91,12 @@ export const useBracket = () => {
       ]
       const result = readResult(def.id)
       const winner =
-        result.winnerSlot !== null ? participants[result.winnerSlot] ?? null : null
-      const loser =
-        result.winnerSlot !== null
-          ? participants[result.winnerSlot === 0 ? 1 : 0] ?? null
-          : null
+        result.winnerSlot === null ? null : participants[result.winnerSlot] ?? null
+      let loser: Team | null = null
+      if (result.winnerSlot !== null) {
+        const loserSlot = result.winnerSlot === 0 ? 1 : 0
+        loser = participants[loserSlot] ?? null
+      }
 
       const hydrated: HydratedMatch = {
         ...def,
@@ -105,7 +121,16 @@ export const useBracket = () => {
     return dictionary
   })
 
+  const getTargetScoreForMatch = (matchId: string) => {
+    const def = matchMap.get(matchId)
+    if (!def) {
+      return 4
+    }
+    return targetMap[def.bestOf]
+  }
+
   const setMatchResult = (matchId: string, data: Partial<MatchResult>) => {
+    const targetScore = getTargetScoreForMatch(matchId)
     const current = readResult(matchId)
     const merged: MatchResult = {
       winnerSlot:
@@ -113,7 +138,7 @@ export const useBracket = () => {
       score: (data.score ?? current.score).map(value =>
         value === null || value === undefined
           ? null
-          : Math.max(0, Math.min(4, Number(value)))
+          : Math.max(0, Math.min(targetScore, Number(value)))
       ) as [number | null, number | null],
       updatedAt: Date.now()
     }
@@ -136,32 +161,82 @@ export const useBracket = () => {
   }
 
   const encodeBracketState = () => {
-    const compactEntries = Object.entries(results.value).filter(([, result]) => {
-      return (
-        result.winnerSlot !== null ||
-        result.score.some(value => value !== null && value !== undefined)
-      )
-    })
-    if (!compactEntries.length) return ''
-    const payload = Object.fromEntries(compactEntries)
-    return base64urlEncode(JSON.stringify(payload))
+    const bytes = new Uint8Array(matchBlueprint.length)
+    let lastIndexWithData = -1
+
+    for (let index = 0; index < matchBlueprint.length; index += 1) {
+      const match = matchBlueprint[index]
+      if (!match) continue
+      const result = readResult(match.id)
+      let winnerBits = 0
+      if (result.winnerSlot === 0) {
+        winnerBits = 1
+      } else if (result.winnerSlot === 1) {
+        winnerBits = 2
+      }
+      const encodeScore = (value: number | null | undefined) => {
+        if (value === null || value === undefined) {
+          return 7
+        }
+        return Math.max(0, Math.min(4, Number(value)))
+      }
+      const scoreA = encodeScore(result.score[0])
+      const scoreB = encodeScore(result.score[1])
+      const packed = winnerBits | (scoreA << 2) | (scoreB << 5)
+      bytes[index] = packed
+      if (packed !== 0) {
+        lastIndexWithData = index
+      }
+    }
+
+    if (lastIndexWithData === -1) {
+      return ''
+    }
+    const payload = bytes.slice(0, lastIndexWithData + 1)
+    return base64urlFromBytes(payload)
   }
 
   const decodeBracketState = (token: string) => {
     try {
-      const json = base64urlDecode(token)
-      const parsed = JSON.parse(json) as BracketResultRecord
-      results.value = Object.fromEntries(
-        Object.entries(parsed).map(([matchId, value]) => [
-          matchId,
-          {
-            winnerSlot:
-              value.winnerSlot === 0 || value.winnerSlot === 1 ? value.winnerSlot : null,
-            score: Array.isArray(value.score) ? value.score : [null, null],
+      if (!token) {
+        results.value = {}
+        return true
+      }
+      const bytes = bytesFromBase64url(token)
+      const next: BracketResultRecord = {}
+      const matchCount = Math.min(bytes.length, matchBlueprint.length)
+
+      for (let index = 0; index < matchCount; index += 1) {
+        const byte = bytes[index] ?? 0
+        if (byte === 0) continue
+        const match = matchBlueprint[index]
+        if (!match) continue
+        const winnerBits = byte & 0b11
+        const scoreABits = (byte >> 2) & 0b111
+        const scoreBBits = (byte >> 5) & 0b111
+        let winnerSlot: 0 | 1 | null = null
+        if (winnerBits === 1) {
+          winnerSlot = 0
+        } else if (winnerBits === 2) {
+          winnerSlot = 1
+        }
+        const decodeScore = (bits: number) => (bits === 7 ? null : bits)
+        const score: [number | null, number | null] = [
+          decodeScore(scoreABits),
+          decodeScore(scoreBBits)
+        ]
+        if (
+          winnerSlot !== null ||
+          score.some(value => value !== null && value !== undefined)
+        ) {
+          next[match.id] = {
+            winnerSlot,
+            score,
             updatedAt: Date.now()
           }
-        ])
-      )
+        }
+      }
+      results.value = next
       return true
     } catch (error) {
       console.warn('Invalid bracket token', error)
@@ -173,6 +248,7 @@ export const useBracket = () => {
     teams,
     matches: hydrateMatch,
     matchesById,
+    getTargetScoreForMatch,
     results,
     setMatchResult,
     clearMatchResult,
