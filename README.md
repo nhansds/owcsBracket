@@ -1,75 +1,78 @@
-# Nuxt Minimal Starter
+# OWCS Bracket Builder
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+An interactive OWCS 2025 World Finals bracket builder built with Nuxt 4 + Vue 3 + TailwindCSS.  
+Pick winners, set scores (FT2/FT3/FT4), and share the entire bracket using a short encoded URL.
 
-## Setup
+## Features
 
-Make sure to install dependencies:
+- **Live bracket editing** for all upper/lower/finals rounds (12-team double elimination).
+- **Score-aware inputs** (auto-clamps based on series format and validates winner when max is reached).
+- **Shareable state token**: compact byte-packed encoding → very short URLs (works with GitHub Pages base path).
+- **Reset / clear controls**, clipboard copy helper, and dynamic stats (matches completed).
+- **Participating Teams panel** with collapsible UX on mobile, team logos, roster roles, and lazy-loading icons.
+- **Responsive UI** themed after Liquipedia, with animated collapsible transitions and custom footer.
+
+## Stack & Tooling
+
+- [Nuxt 4](https://nuxt.com/) + [Vue 3](https://vuejs.org/) + [Vue Router](https://router.vuejs.org/)
+- [Tailwind CSS 3](https://tailwindcss.com/) + custom gradients/components
+- [Vite](https://vitejs.dev/) dev server
+- TypeScript + composables (`useBracket`, `useTeamDetails`)
+- GitHub Actions deployment to GitHub Pages
+
+## Getting Started
+
+Clone and install:
 
 ```bash
-# npm
-npm install
-
-# pnpm
+git clone https://github.com/nhansds/owcsBracket.git
+cd owcsBracket
 pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
 ```
 
-## Development Server
-
-Start the development server on `http://localhost:3000`:
+Run locally:
 
 ```bash
-# npm
-npm run dev
-
-# pnpm
 pnpm dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
+# http://localhost:3000
 ```
 
-## Production
-
-Build the application for production:
+Generate static build (used for GitHub Pages):
 
 ```bash
-# npm
-npm run build
-
-# pnpm
-pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
+pnpm generate
+# Output: .output/public
 ```
 
-Locally preview production build:
+Preview production build:
 
 ```bash
-# npm
-npm run preview
-
-# pnpm
 pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
 ```
 
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+## GitHub Pages Deployment
+
+This project ships with `.github/workflows/deploy.yml`. On every push to `main`:
+
+1. Install deps with pnpm.
+2. Run `pnpm generate`.
+3. Publish `.output/public` to the `gh-pages` branch via `peaceiris/actions-gh-pages`.
+
+## Project Structure
+
+- `app/pages/index.vue` – layout, bracket sections, share/reset logic.
+- `app/components/BracketRound.vue` & `BracketMatchCard.vue` – match rendering + score inputs.
+- `app/components/TeamsList.vue` – collapsible roster grid with role icons.
+- `app/components/TeamDetailsPanel.vue` – detailed view for hovered/clicked teams.
+- `app/composables/useBracket.ts` – state management, propagation, encoding/decoding.
+- `app/data/*.ts` – teams, matches, metadata.
+- `public/teams` & `public/roles` – logos and role icons.
+
+## Environment
+
+- Node 20.x recommended (used in CI).
+- Package manager: pnpm 9.x (`pnpm install`, `pnpm dev`, `pnpm generate`…).
+
+## License
+
+MIT © Nhans De Sousa. Default repository terms apply.
