@@ -123,11 +123,15 @@ const completedMatches = computed(
 const shareToken = ref('')
 const shareStatus = ref('')
 const initialized = ref(false)
+const runtimeConfig = useRuntimeConfig()
 
 const shareUrl = computed(() => {
   if (!process.client) return ''
   const origin = globalThis.location?.origin ?? ''
-  const base = `${origin}${route.path}`
+  const basePath = runtimeConfig.app?.baseURL ?? '/'
+  const normalizedBase = basePath.endsWith('/') ? basePath : `${basePath}/`
+  const pathSuffix = route.path === '/' ? '' : route.path.replace(/^\//, '')
+  const base = `${origin}${normalizedBase}${pathSuffix}`
   return shareToken.value ? `${base}?state=${shareToken.value}` : base
 })
 
