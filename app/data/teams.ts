@@ -180,7 +180,7 @@ const teams: Team[] = [
       { name: 'Dip', role: 'damage' },
       { name: 'WillyS', role: 'tank' },
       { name: 'Xeriongdh', role: 'support' },
-      { name: 'FDGod', role: 'support' }
+      { name: 'FDGod 🐸', role: 'support' }
     ]
   },
   {
