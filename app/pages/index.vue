@@ -1,7 +1,7 @@
 <template>
   <div class="space-y-10">
     <section
-      class="grid gap-6 rounded-3xl border border-white/5 bg-white/5 p-6 shadow-inner lg:grid-cols-[2.5fr,1fr]"
+      class="grid gap-6 rounded-3xl border border-white/15 bg-white/10 p-6 shadow-inner lg:grid-cols-[2.5fr,1fr]"
     >
       <div class="space-y-3">
         <h2 class="text-2xl font-semibold">Bracket rules</h2>
@@ -18,7 +18,7 @@
         </p>
       </div>
       <aside
-        class="flex flex-col gap-4 rounded-2xl border border-white/10 bg-slate-900/50 p-4 text-sm shadow-glow"
+        class="flex flex-col gap-4 rounded-2xl border border-white/15 bg-slate-900/60 p-4 text-sm shadow-glow"
       >
         <div class="flex items-center justify-between">
           <span class="text-slate-400">Total matches</span>
@@ -30,7 +30,7 @@
         </div>
         <button
           type="button"
-          class="rounded-xl border border-white/10 bg-white/10 px-4 py-2 text-sm font-semibold text-white transition hover:bg-white/20"
+          class="rounded-xl border border-white/15 bg-white/15 px-4 py-2 text-sm font-semibold text-white transition hover:bg-white/25"
           @click="resetBracket"
         >
           Reset all

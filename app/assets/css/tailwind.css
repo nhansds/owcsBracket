@@ -38,7 +38,7 @@ body {
   }
 
   .bracket-column {
-    @apply flex-1 rounded-3xl border border-white/5 bg-white/5 p-5 shadow-inner shadow-glow backdrop-blur;
+    @apply flex-1 rounded-3xl border border-white/15 bg-white/10 p-5 shadow-inner shadow-glow backdrop-blur;
   }
 
   .bracket-column-title {

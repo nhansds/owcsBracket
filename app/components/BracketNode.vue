@@ -10,7 +10,7 @@
         v-for="(team, index) in match.participants"
         :key="index"
         type="button"
-        class="flex w-full items-center gap-2 rounded-xl border border-white/5 bg-white/0 px-3 py-2 text-left transition"
+        class="flex w-full items-center gap-2 rounded-xl border border-white/15 bg-white/0 px-3 py-2 text-left transition"
         :class="rowClasses(index, team)"
         @click="() => selectWinner(index)"
       >
@@ -33,7 +33,7 @@
           step="1"
           :disabled="!team"
           :value="scoreValue(index)"
-          class="h-9 w-12 rounded-lg border border-white/10 bg-slate-950/60 text-center text-sm font-semibold text-white focus:border-primary focus:outline-none disabled:opacity-40"
+          class="h-9 w-12 rounded-lg border border-white/15 bg-slate-950/60 text-center text-sm font-semibold text-white focus:border-primary focus:outline-none disabled:opacity-40"
           @input="event => updateScore(index, (event.target as HTMLInputElement).value)"
         />
       </button>
@@ -69,8 +69,8 @@ const { setMatchResult, clearMatchResult } = useBracket()
 
 const variantClass = computed(() =>
   props.variant === 'final'
-    ? 'border-secondary/50 bg-secondary/10 shadow-[0_0_35px_rgba(250,204,21,0.15)]'
-    : 'border-white/10 bg-slate-900/70'
+    ? 'border-secondary/60 bg-secondary/15 shadow-[0_0_35px_rgba(250,204,21,0.2)]'
+    : 'border-white/15 bg-slate-900/70'
 )
 
 const nodeClasses = computed(() => [
@@ -82,7 +82,7 @@ const rowClasses = (index: number, team: HydratedMatch['participants'][number]) 
   const isWinner = props.match.result.winnerSlot === index
   return [
     team ? 'cursor-pointer hover:border-primary/70 hover:bg-primary/5' : 'cursor-not-allowed opacity-40',
-    isWinner ? 'border-primary/70 bg-primary/5' : 'border-white/10'
+    isWinner ? 'border-primary/70 bg-primary/5' : 'border-white/20'
   ]
 }
 
