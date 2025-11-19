@@ -16,3 +16,67 @@ body {
     #090b15;
 }
 
+@layer components {
+  .bracket-tree {
+    @apply space-y-16;
+  }
+
+  .bracket-branch-title {
+    @apply flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.4em] text-white/70;
+  }
+
+  .bracket-branch-title h2 {
+    @apply text-lg tracking-[0.4em] text-white/90;
+  }
+
+  .bracket-branch-line {
+    @apply h-px flex-1 bg-gradient-to-r from-white/40 to-transparent;
+  }
+
+  .bracket-columns {
+    @apply flex flex-col gap-6 lg:flex-row;
+  }
+
+  .bracket-column {
+    @apply flex-1 rounded-3xl border border-white/5 bg-white/5 p-5 shadow-inner shadow-glow backdrop-blur;
+  }
+
+  .bracket-column-title {
+    @apply mb-3 text-[11px] font-semibold uppercase tracking-[0.35em] text-slate-400;
+  }
+
+  .bracket-column-body {
+    @apply flex flex-col gap-4;
+  }
+
+  .bracket-column-connector {
+    @apply hidden w-10 items-center justify-center lg:flex;
+  }
+
+  .bracket-column-connector::before {
+    content: '';
+    @apply block h-px w-full bg-gradient-to-r from-transparent via-white/30 to-transparent;
+  }
+
+  .bracket-finals {
+    @apply flex flex-col gap-6 lg:flex-row lg:items-center;
+  }
+
+  .bracket-finals-node {
+    @apply flex-1 space-y-3;
+  }
+
+  .bracket-finals-label {
+    @apply text-center text-[11px] font-semibold uppercase tracking-[0.4em] text-slate-400;
+  }
+
+  .bracket-finals-connector {
+    @apply hidden w-14 items-center justify-center lg:flex;
+  }
+
+  .bracket-finals-connector::before {
+    content: '';
+    @apply block h-px w-full bg-gradient-to-r from-transparent via-secondary/50 to-transparent;
+  }
+}
+

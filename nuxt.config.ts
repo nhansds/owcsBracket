@@ -27,7 +27,7 @@ export default defineNuxtConfig({
         {
           property: 'og:description',
           content:
-            'Choisissez vos vainqueurs, partagez via un lien et exportez une image moderne du bracket OWCS.'
+            'Choisissez vos vainqueurs et partagez via un lien.'
         },
         { name: 'theme-color', content: '#111320' }
       ],

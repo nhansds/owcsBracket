@@ -12,8 +12,7 @@
             Bracket Builder
           </h1>
           <p class="mt-3 text-base text-slate-300">
-            Choisis les gagnants, configure leurs scores et partage ton pronostic grâce à un lien
-            ou une image exportée.
+            Pick your winners, set their scores, and share the bracket with a single link.
           </p>
         </div>
       </header>

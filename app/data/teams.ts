@@ -85,8 +85,8 @@ const teams: Team[] = [
     id: 'geekay',
     name: 'Geekay Esports',
     shortName: 'GK',
-    region: 'OWCS EMEA',
-    placement: 'EMEA #4 Seed',
+    region: 'OWCS North America',
+    placement: 'NA #3 Seed',
     seed: 12,
     accent: '#10b981',
     roster: ['Lethal', 'WMaimone', 'cuFFa', 'UltraViolet', 'Admiral']
