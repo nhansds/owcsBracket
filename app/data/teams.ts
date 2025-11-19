@@ -9,7 +9,7 @@ const teams: Team[] = [
     placement: 'Asia #1 Seed',
     seed: 1,
     accent: '#ff5470',
-    logo: '/teams/38px-Crazy_Raccoon_2021_allmode.png',
+    logo: 'teams/38px-Crazy_Raccoon_2021_allmode.png',
     roster: [
       { name: 'LIP', role: 'damage' },
       { name: 'HeeSang', role: 'damage' },
@@ -28,7 +28,7 @@ const teams: Team[] = [
     placement: 'Asia #2 Seed',
     seed: 5,
     accent: '#3b82f6',
-    logo: '/teams/41px-Team_Falcons_2022_allmode.png',
+    logo: 'teams/41px-Team_Falcons_2022_allmode.png',
     roster: [
       { name: 'Proper', role: 'damage' },
       { name: 'MER1T', role: 'damage' },
@@ -46,7 +46,7 @@ const teams: Team[] = [
     placement: 'Asia #3 Seed',
     seed: 7,
     accent: '#f97316',
-    logo: '/teams/100px-T1_2019_allmode.png',
+    logo: 'teams/100px-T1_2019_allmode.png',
     roster: [
       { name: 'Proud', role: 'damage' },
       { name: 'Viper', role: 'damage' },
@@ -65,7 +65,7 @@ const teams: Team[] = [
     placement: 'Asia Pacific Champion',
     seed: 6,
     accent: '#8b5cf6',
-    logo: '/teams/61px-VARREL_darkmode.png',
+    logo: 'teams/61px-VARREL_darkmode.png',
     roster: [
       { name: 'Nico', role: 'support' },
       { name: 'qki', role: 'damage' },
@@ -84,7 +84,7 @@ const teams: Team[] = [
     placement: 'NA #1 Seed',
     seed: 2,
     accent: '#06b6d4',
-    logo: '/teams/44px-Team_Liquid_2024_darkmode.png',
+    logo: 'teams/44px-Team_Liquid_2024_darkmode.png',
     roster: [
       { name: 'TR33', role: 'damage' },
       { name: 'zeruhh', role: 'damage' },
@@ -101,7 +101,7 @@ const teams: Team[] = [
     placement: 'NA #2 Seed',
     seed: 9,
     accent: '#fbbf24',
-    logo: '/teams/41px-Spacestation_Gaming_2021_allmode.png',
+    logo: 'teams/41px-Spacestation_Gaming_2021_allmode.png',
     roster: [
       { name: 'sugarfree', role: 'damage' },
       { name: 'Kronik', role: 'damage' },
@@ -118,7 +118,7 @@ const teams: Team[] = [
     placement: 'NA #3 Seed',
     seed: 12,
     accent: '#10b981',
-    logo: '/teams/67px-Geekay_Esports_2023_allmode.png',
+    logo: 'teams/67px-Geekay_Esports_2023_allmode.png',
     roster: [
       { name: 'Lethal', role: 'damage' },
       { name: 'WMaimone', role: 'damage' },
@@ -135,7 +135,7 @@ const teams: Team[] = [
     placement: 'EMEA #1 Seed',
     seed: 3,
     accent: '#14b8a6',
-    logo: '/teams/71px-Twisted_Minds_2023_allmode.png',
+    logo: 'teams/71px-Twisted_Minds_2023_allmode.png',
     roster: [
       { name: 'Quartz', role: 'damage' },
       { name: 'Youbi', role: 'damage' },
@@ -154,7 +154,7 @@ const teams: Team[] = [
     placement: 'EMEA #2 Seed',
     seed: 11,
     accent: '#f59e0b',
-    logo: '/teams/22px-Al-Qadsiah_2024_allmode.png',
+    logo: 'teams/22px-Al-Qadsiah_2024_allmode.png',
     roster: [
       { name: 'LBBD7', role: 'damage' },
       { name: 'CheckMate', role: 'damage' },
@@ -173,7 +173,7 @@ const teams: Team[] = [
     placement: 'EMEA #3 Seed',
     seed: 10,
     accent: '#ec4899',
-    logo: '/teams/41px-Team_Peps_July_2022_allmode.png',
+    logo: 'teams/41px-Team_Peps_July_2022_allmode.png',
     roster: [
       { name: 'SoOn', role: 'damage' },
       { name: 'Zorrow', role: 'damage' },
@@ -191,7 +191,7 @@ const teams: Team[] = [
     placement: 'China #1 Seed',
     seed: 4,
     accent: '#dc2626',
-    logo: '/teams/62px-Weibo_allmode.png',
+    logo: 'teams/62px-Weibo_allmode.png',
     roster: [
       { name: 'Leave', role: 'damage' },
       { name: 'shy', role: 'damage' },
@@ -209,7 +209,7 @@ const teams: Team[] = [
     placement: 'China #2 Seed',
     seed: 8,
     accent: '#a855f7',
-    logo: '/teams/53px-Team_CC_August_2025_allmode.png',
+    logo: 'teams/53px-Team_CC_August_2025_allmode.png',
     roster: [
       { name: 'Kaneki', role: 'damage' },
       { name: 'Pineapple', role: 'damage' },

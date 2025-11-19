@@ -64,9 +64,9 @@ import { useBracket } from '~/composables/useBracket'
 const { teams } = useBracket()
 
 const roleIcons: Record<PlayerRole, string> = {
-  tank: '/roles/16px-Tank_Header.png',
-  damage: '/roles/16px-Offense_Header.png',
-  support: '/roles/16px-Support_Header.png'
+  tank: 'roles/16px-Tank_Header.png',
+  damage: 'roles/16px-Offense_Header.png',
+  support: 'roles/16px-Support_Header.png'
 }
 
 const roleLabels: Record<PlayerRole, string> = {
