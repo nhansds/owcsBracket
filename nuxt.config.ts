@@ -12,8 +12,7 @@ export default defineNuxtConfig({
       meta: [
         {
           name: 'description',
-          content:
-            'Construisez et partagez votre propre pronostic pour le bracket OWCS 2025 World Finals.'
+          content: 'Build and share your OWCS 2025 World Finals bracket predictions.'
         },
         { property: 'og:type', content: 'website' },
         {
@@ -23,7 +22,7 @@ export default defineNuxtConfig({
         {
           property: 'og:description',
           content:
-            'Choisissez vos vainqueurs et partagez via un lien.'
+            'Pick your winners, set their scores, and share the bracket with a single link.'
         },
         { name: 'theme-color', content: '#111320' }
       ],
