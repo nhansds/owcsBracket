@@ -11,13 +11,13 @@ const teams: Team[] = [
     accent: '#ff5470',
     logo: 'teams/38px-Crazy_Raccoon_2021_allmode.png',
     roster: [
-      { name: 'LIP', role: 'damage' },
-      { name: 'HeeSang', role: 'damage' },
-      { name: 'SP1NT', role: 'damage' },
-      { name: 'JunBin', role: 'tank' },
-      { name: 'MAX', role: 'tank' },
-      { name: 'CH0R0NG', role: 'support' },
-      { name: 'Shu', role: 'support' }
+      { name: 'LIP', role: 'damage', country: 'South Korea' },
+      { name: 'HeeSang', role: 'damage', country: 'South Korea' },
+      { name: 'SP1NT', role: 'damage', country: 'South Korea' },
+      { name: 'JunBin', role: 'tank', country: 'South Korea' },
+      { name: 'MAX', role: 'tank', country: 'South Korea' },
+      { name: 'CH0R0NG', role: 'support', country: 'South Korea' },
+      { name: 'Shu', role: 'support', country: 'South Korea' }
     ]
   },
   {
@@ -30,12 +30,12 @@ const teams: Team[] = [
     accent: '#3b82f6',
     logo: 'teams/41px-Team_Falcons_2022_allmode.png',
     roster: [
-      { name: 'Proper', role: 'damage' },
-      { name: 'MER1T', role: 'damage' },
-      { name: 'SOMEONE', role: 'tank' },
-      { name: 'Hanbin', role: 'tank' },
-      { name: 'ChiYo', role: 'support' },
-      { name: 'Fielder', role: 'support' }
+      { name: 'Proper', role: 'damage', country: 'South Korea' },
+      { name: 'MER1T', role: 'damage', country: 'South Korea' },
+      { name: 'SOMEONE', role: 'tank', country: 'South Korea' },
+      { name: 'Hanbin', role: 'tank', country: 'South Korea' },
+      { name: 'ChiYo', role: 'support', country: 'South Korea' },
+      { name: 'Fielder', role: 'support', country: 'South Korea' }
     ]
   },
   {
@@ -48,13 +48,13 @@ const teams: Team[] = [
     accent: '#f97316',
     logo: 'teams/100px-T1_2019_allmode.png',
     roster: [
-      { name: 'Proud', role: 'damage' },
-      { name: 'Viper', role: 'damage' },
-      { name: 'ZEST', role: 'damage' },
-      { name: 'DONGHAK', role: 'tank' },
-      { name: 'Jasm1ne', role: 'tank' },
-      { name: 'skewed', role: 'support' },
-      { name: 'vigilante', role: 'support' }
+      { name: 'Proud', role: 'damage', country: 'South Korea' },
+      { name: 'Viper', role: 'damage', country: 'South Korea' },
+      { name: 'ZEST', role: 'damage', country: 'South Korea' },
+      { name: 'DONGHAK', role: 'tank', country: 'South Korea' },
+      { name: 'Jasm1ne', role: 'tank', country: 'South Korea' },
+      { name: 'skewed', role: 'support', country: 'South Korea' },
+      { name: 'vigilante', role: 'support', country: 'South Korea' }
     ]
   },
   {
@@ -67,13 +67,13 @@ const teams: Team[] = [
     accent: '#8b5cf6',
     logo: 'teams/61px-VARREL_darkmode.png',
     roster: [
-      { name: 'Nico', role: 'support' },
-      { name: 'qki', role: 'damage' },
-      { name: 'TOPDRAGON', role: 'damage' },
-      { name: 'KSG', role: 'tank' },
-      { name: 'Qloud', role: 'support' },
-      { name: 'Mimoza', role: 'support' },
-      { name: 'Sley', role: 'support' }
+      { name: 'Nico', role: 'support', country: 'Japan' },
+      { name: 'qki', role: 'damage', country: 'Japan' },
+      { name: 'TOPDRAGON', role: 'damage', country: 'South Korea' },
+      { name: 'KSG', role: 'tank', country: 'Japan' },
+      { name: 'Qloud', role: 'support', country: 'Japan' },
+      { name: 'Mimoza', role: 'support', country: 'Japan' },
+      { name: 'Sley', role: 'support', country: 'South Korea' }
     ]
   },
   {
@@ -86,11 +86,11 @@ const teams: Team[] = [
     accent: '#06b6d4',
     logo: 'teams/44px-Team_Liquid_2024_darkmode.png',
     roster: [
-      { name: 'TR33', role: 'damage' },
-      { name: 'zeruhh', role: 'damage' },
-      { name: 'Infekted', role: 'tank' },
-      { name: 'Rupal', role: 'support' },
-      { name: 'Vega', role: 'support' }
+      { name: 'TR33', role: 'damage', country: 'United States' },
+      { name: 'zeruhh', role: 'damage', country: 'United States' },
+      { name: 'Infekted', role: 'tank', country: 'United States' },
+      { name: 'Rupal', role: 'support', country: 'United States' },
+      { name: 'Vega', role: 'support', country: 'United States' }
     ]
   },
   {
@@ -103,11 +103,11 @@ const teams: Team[] = [
     accent: '#fbbf24',
     logo: 'teams/41px-Spacestation_Gaming_2021_allmode.png',
     roster: [
-      { name: 'sugarfree', role: 'damage' },
-      { name: 'Kronik', role: 'damage' },
-      { name: 'Hawk', role: 'tank' },
-      { name: 'cjay', role: 'support' },
-      { name: 'Lep', role: 'support' }
+      { name: 'sugarfree', role: 'damage', country: 'United States' },
+      { name: 'Kronik', role: 'damage', country: 'United States' },
+      { name: 'Hawk', role: 'tank', country: 'United States' },
+      { name: 'cjay', role: 'support', country: 'United States' },
+      { name: 'Lep', role: 'support', country: 'United States' }
     ]
   },
   {
@@ -120,11 +120,11 @@ const teams: Team[] = [
     accent: '#10b981',
     logo: 'teams/67px-Geekay_Esports_2023_allmode.png',
     roster: [
-      { name: 'Lethal', role: 'damage' },
-      { name: 'WMaimone', role: 'damage' },
-      { name: 'cuFFa', role: 'tank' },
-      { name: 'UltraViolet', role: 'support' },
-      { name: 'Admiral', role: 'support' }
+      { name: 'Lethal', role: 'damage', country: 'Turkey' },
+      { name: 'WMaimone', role: 'damage', country: 'Wales' },
+      { name: 'cuFFa', role: 'tank', country: 'Australia' },
+      { name: 'UltraViolet', role: 'support', country: 'United States' },
+      { name: 'Admiral', role: 'support', country: 'Estonia' }
     ]
   },
   {
@@ -137,13 +137,13 @@ const teams: Team[] = [
     accent: '#14b8a6',
     logo: 'teams/71px-Twisted_Minds_2023_allmode.png',
     roster: [
-      { name: 'Quartz', role: 'damage' },
-      { name: 'Youbi', role: 'damage' },
-      { name: 'Seicoe', role: 'damage' },
-      { name: 'KSAA', role: 'tank' },
-      { name: 'TVNT', role: 'tank' },
-      { name: 'FunnyAstro', role: 'support' },
-      { name: 'Simple', role: 'support' }
+      { name: 'Quartz', role: 'damage', country: 'Saudi Arabia' },
+      { name: 'Youbi', role: 'damage', country: 'Saudi Arabia' },
+      { name: 'Seicoe', role: 'damage', country: 'Austria' },
+      { name: 'KSAA', role: 'tank', country: 'Saudi Arabia' },
+      { name: 'TVNT', role: 'tank', country: 'Saudi Arabia' },
+      { name: 'FunnyAstro', role: 'support', country: 'United Kingdom' },
+      { name: 'Simple', role: 'support', country: 'South Korea' }
     ]
   },
   {
@@ -156,13 +156,13 @@ const teams: Team[] = [
     accent: '#f59e0b',
     logo: 'teams/22px-Al-Qadsiah_2024_allmode.png',
     roster: [
-      { name: 'LBBD7', role: 'damage' },
-      { name: 'CheckMate', role: 'damage' },
-      { name: 'ZIYAD', role: 'tank' },
-      { name: 'Chase', role: 'tank' },
-      { name: 'Haku', role: 'support' },
-      { name: 'Landon', role: 'support' },
-      { name: 'Kellex', role: 'support' }
+      { name: 'LBBD7', role: 'damage', country: 'Saudi Arabia' },
+      { name: 'CheckMate', role: 'damage', country: 'South Korea' },
+      { name: 'ZIYAD', role: 'tank', country: 'Saudi Arabia' },
+      { name: 'Chase', role: 'tank', country: 'Ukraine' },
+      { name: 'Haku', role: 'support', country: 'Saudi Arabia' },
+      { name: 'Landon', role: 'support', country: 'United States' },
+      { name: 'Kellex', role: 'support', country: 'Denmark' }
     ]
   },
   {
@@ -175,12 +175,12 @@ const teams: Team[] = [
     accent: '#ec4899',
     logo: 'teams/41px-Team_Peps_July_2022_allmode.png',
     roster: [
-      { name: 'SoOn', role: 'damage' },
-      { name: 'Zorrow', role: 'damage' },
-      { name: 'Dip', role: 'damage' },
-      { name: 'WillyS', role: 'tank' },
-      { name: 'Xeriongdh', role: 'support' },
-      { name: 'FDGod 🐸', role: 'support' }
+      { name: 'SoOn', role: 'damage', country: 'France' },
+      { name: 'Zorrow', role: 'damage', country: 'Sweden' },
+      { name: 'Dip', role: 'damage', country: 'France' },
+      { name: 'WillyS', role: 'tank', country: 'Sweden' },
+      { name: 'Xeriongdh', role: 'support', country: 'France' },
+      { name: 'FDGod 🐸', role: 'support', country: 'France' }
     ]
   },
   {
@@ -193,12 +193,12 @@ const teams: Team[] = [
     accent: '#dc2626',
     logo: 'teams/62px-Weibo_allmode.png',
     roster: [
-      { name: 'Leave', role: 'damage' },
-      { name: 'shy', role: 'damage' },
-      { name: 'Apr1ta', role: 'damage' },
-      { name: 'guxue', role: 'tank' },
-      { name: 'Mew', role: 'support' },
-      { name: 'Mmonk', role: 'support' }
+      { name: 'Leave', role: 'damage', country: 'China' },
+      { name: 'shy', role: 'damage', country: 'China' },
+      { name: 'Apr1ta', role: 'damage', country: 'China' },
+      { name: 'guxue', role: 'tank', country: 'China' },
+      { name: 'Mew', role: 'support', country: 'China' },
+      { name: 'Mmonk', role: 'support', country: 'China' }
     ]
   },
   {
@@ -211,12 +211,12 @@ const teams: Team[] = [
     accent: '#a855f7',
     logo: 'teams/53px-Team_CC_August_2025_allmode.png',
     roster: [
-      { name: 'Kaneki', role: 'damage' },
-      { name: 'Pineapple', role: 'damage' },
-      { name: 'GAGA', role: 'tank' },
-      { name: 'BILIDENG', role: 'tank' },
-      { name: 'Farway2025', role: 'support' },
-      { name: 'HaoYoQian', role: 'support' }
+      { name: 'Kaneki', role: 'damage', country: 'China' },
+      { name: 'Pineapple', role: 'damage', country: 'China' },
+      { name: 'GAGA', role: 'tank', country: 'China' },
+      { name: 'BILIDENG', role: 'tank', country: 'China' },
+      { name: 'Farway2025', role: 'support', country: 'China' },
+      { name: 'HaoYoQian', role: 'support', country: 'China' }
     ]
   }
 ]

@@ -7,6 +7,7 @@ export type PlayerRole = 'tank' | 'damage' | 'support'
 export interface Player {
   name: string
   role: PlayerRole
+  country: string
 }
 
 export interface Team {

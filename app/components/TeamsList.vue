@@ -66,6 +66,7 @@
                     :alt="roleLabels[player.role]"
                     loading="lazy"
                   />
+                  <span>{{ countryFlags[player.country] || '' }}</span>
                   {{ player.name }}
                 </span>
               </div>
@@ -94,6 +95,24 @@ const roleLabels: Record<PlayerRole, string> = {
   tank: 'Tank role',
   damage: 'Damage role',
   support: 'Support role'
+}
+
+const countryFlags: Record<string, string> = {
+  'South Korea': '🇰🇷',
+  'China': '🇨🇳',
+  'United States': '🇺🇸',
+  'Saudi Arabia': '🇸🇦',
+  'Japan': '🇯🇵',
+  'France': '🇫🇷',
+  'Sweden': '🇸🇪',
+  'Australia': '🇦🇺',
+  'Austria': '🇦🇹',
+  'Denmark': '🇩🇰',
+  'Estonia': '🇪🇪',
+  'Turkey': '🇹🇷',
+  'Ukraine': '🇺🇦',
+  'United Kingdom': '🇬🇧',
+  'Wales': '🏴󠁧󠁢󠁷󠁬󠁳󠁿'
 }
 </script>
 
