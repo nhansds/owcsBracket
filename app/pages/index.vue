@@ -100,20 +100,20 @@ const collectMatches = (ids: string[]) =>
 
 const bracketLayout = computed(() => ({
   upperColumns: [
-    { title: 'Upper Round 1', matches: collectMatches(['UBR1-A', 'UBR1-B', 'UBR1-C', 'UBR1-D']) },
-    { title: 'Upper Quarterfinals', matches: collectMatches(['UBQ-A', 'UBQ-B', 'UBQ-C', 'UBQ-D']) },
-    { title: 'Upper Semifinals', matches: collectMatches(['UBS-A', 'UBS-B']) }
+    { title: 'Upper Round 1', matches: collectMatches(['M4', 'M3', 'M1', 'M2']) },
+    { title: 'Upper Round 2', matches: collectMatches(['M5', 'M6', 'M7', 'M8']) },
+    { title: 'Upper Semifinals', matches: collectMatches(['M15', 'M16']) }
   ],
   lowerColumns: [
-    { title: 'Lower Round 1', matches: collectMatches(['LBR1-A', 'LBR1-B', 'LBR1-C', 'LBR1-D']) },
-    { title: 'Lower Round 2', matches: collectMatches(['LBR2-A', 'LBR2-B']) },
-    { title: 'Lower Quarterfinals', matches: collectMatches(['LBQ-A', 'LBQ-B']) },
-    { title: 'Lower Semifinal', matches: collectMatches(['LBS']) }
+    { title: 'Lower Round 1', matches: collectMatches(['M9', 'M10', 'M11', 'M12']) },
+    { title: 'Lower Round 2', matches: collectMatches(['M13', 'M14']) },
+    { title: 'Lower Round 3', matches: collectMatches(['M17', 'M18']) },
+    { title: 'Lower Semifinal', matches: collectMatches(['M19']) }
   ],
   finals: {
     upperFinal: matchesById.value['UBF'] ?? null,
     lowerFinal: matchesById.value['LBF'] ?? null,
-    grandFinal: matchesById.value['GF'] ?? null
+    grandFinal: matchesById.value['FINALS'] ?? null
   }
 }))
 const completedMatches = computed(

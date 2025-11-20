@@ -2,7 +2,9 @@
   <div :class="nodeClasses">
     <header class="mb-3 flex items-center justify-between text-[11px] uppercase tracking-[0.2em] text-slate-400">
       <span class="truncate">{{ match.roundLabel }}</span>
-      <span class="font-semibold text-secondary-200">{{ match.bestOf }}</span>
+      <span class="font-semibold text-secondary-200">
+        {{ match.matchNumber ? `${match.matchNumber} | ${match.bestOf}` : match.bestOf }}
+      </span>
     </header>
 
     <div class="space-y-2">

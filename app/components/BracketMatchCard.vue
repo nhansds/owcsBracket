@@ -5,7 +5,7 @@
     <div class="mb-3 flex items-center justify-between text-xs uppercase text-slate-400">
       <span>{{ match.roundLabel }}</span>
       <span class="text-[11px] tracking-wide text-secondary-200">
-        {{ match.bestOf }}
+        {{ match.matchNumber ? `${match.matchNumber} | ${match.bestOf}` : match.bestOf }}
       </span>
     </div>
 

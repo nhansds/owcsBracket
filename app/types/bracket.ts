@@ -33,6 +33,7 @@ export interface MatchDefinition {
   roundLabel: string
   bestOf: SeriesFormat
   slots: [MatchSlotSource, MatchSlotSource]
+  matchNumber?: string
 }
 
 export interface MatchResult {

@@ -2,201 +2,231 @@ import type { MatchDefinition } from '~/types/bracket'
 
 const matches: MatchDefinition[] = [
   {
-    id: 'UBR1-A',
+    id: 'M1',
     label: 'Upper Round 1 · Match 1',
     stage: 'upper',
     roundLabel: 'Upper Round 1',
     bestOf: 'FT2',
-    slots: [
-      { type: 'team', teamId: 'spacestation' },
-      { type: 'team', teamId: 'team-peps' }
-    ]
-  },
-  {
-    id: 'UBR1-B',
-    label: 'Upper Round 1 · Match 2',
-    stage: 'upper',
-    roundLabel: 'Upper Round 1',
-    bestOf: 'FT2',
-    slots: [
-      { type: 'team', teamId: 'al-qadsiah' },
-      { type: 'team', teamId: 'geekay' }
-    ]
-  },
-  {
-    id: 'UBR1-C',
-    label: 'Upper Round 1 · Match 3',
-    stage: 'upper',
-    roundLabel: 'Upper Round 1',
-    bestOf: 'FT2',
+    matchNumber: 'M1',
     slots: [
       { type: 'team', teamId: 'team-cc' },
       { type: 'team', teamId: 't1' }
     ]
   },
   {
-    id: 'UBR1-D',
-    label: 'Upper Round 1 · Match 4',
+    id: 'M2',
+    label: 'Upper Round 1 · Match 2',
     stage: 'upper',
     roundLabel: 'Upper Round 1',
     bestOf: 'FT2',
+    matchNumber: 'M2',
     slots: [
       { type: 'team', teamId: 'team-falcons' },
       { type: 'team', teamId: 'varrel' }
     ]
   },
   {
-    id: 'UBQ-A',
-    label: 'Upper Quarterfinal · Match 1',
+    id: 'M3',
+    label: 'Upper Round 1 · Match 3',
     stage: 'upper',
-    roundLabel: 'Upper Quarterfinals',
+    roundLabel: 'Upper Round 1',
+    bestOf: 'FT2',
+    matchNumber: 'M3',
+    slots: [
+      { type: 'team', teamId: 'al-qadsiah' },
+      { type: 'team', teamId: 'geekay' }
+    ]
+  },
+  {
+    id: 'M4',
+    label: 'Upper Round 1 · Match 4',
+    stage: 'upper',
+    roundLabel: 'Upper Round 1',
+    bestOf: 'FT2',
+    matchNumber: 'M4',
+    slots: [
+      { type: 'team', teamId: 'spacestation' },
+      { type: 'team', teamId: 'team-peps' }
+    ]
+  },
+  {
+    id: 'M5',
+    label: 'Upper Round 2 · Match 1',
+    stage: 'upper',
+    roundLabel: 'Upper Round 2',
     bestOf: 'FT3',
+    matchNumber: 'M5',
     slots: [
       { type: 'team', teamId: 'crazy-raccoon' },
-      { type: 'winner', matchId: 'UBR1-A' }
+      { type: 'winner', matchId: 'M4' }
     ]
   },
   {
-    id: 'UBQ-B',
-    label: 'Upper Quarterfinal · Match 2',
+    id: 'M6',
+    label: 'Upper Round 2 · Match 2',
     stage: 'upper',
-    roundLabel: 'Upper Quarterfinals',
+    roundLabel: 'Upper Round 2',
     bestOf: 'FT3',
+    matchNumber: 'M6',
     slots: [
       { type: 'team', teamId: 'weibo-gaming' },
-      { type: 'winner', matchId: 'UBR1-B' }
+      { type: 'winner', matchId: 'M3' }
     ]
   },
   {
-    id: 'UBQ-C',
-    label: 'Upper Quarterfinal · Match 3',
+    id: 'M7',
+    label: 'Upper Round 2 · Match 3',
     stage: 'upper',
-    roundLabel: 'Upper Quarterfinals',
+    roundLabel: 'Upper Round 2',
     bestOf: 'FT3',
+    matchNumber: 'M7',
     slots: [
       { type: 'team', teamId: 'twisted-minds' },
-      { type: 'winner', matchId: 'UBR1-C' }
+      { type: 'winner', matchId: 'M1' }
     ]
   },
   {
-    id: 'UBQ-D',
-    label: 'Upper Quarterfinal · Match 4',
+    id: 'M8',
+    label: 'Upper Round 2 · Match 4',
     stage: 'upper',
-    roundLabel: 'Upper Quarterfinals',
+    roundLabel: 'Upper Round 2',
     bestOf: 'FT3',
+    matchNumber: 'M8',
     slots: [
       { type: 'team', teamId: 'team-liquid' },
-      { type: 'winner', matchId: 'UBR1-D' }
+      { type: 'winner', matchId: 'M2' }
     ]
   },
   {
-    id: 'LBR1-A',
+    id: 'M9',
     label: 'Lower Round 1 · Match 1',
     stage: 'lower',
     roundLabel: 'Lower Round 1',
     bestOf: 'FT2',
+    matchNumber: 'M9',
     slots: [
-      { type: 'loser', matchId: 'UBQ-A' },
-      { type: 'loser', matchId: 'UBR1-B' }
+      { type: 'loser', matchId: 'M8' },
+      { type: 'loser', matchId: 'M4' }
     ]
   },
   {
-    id: 'LBR1-B',
+    id: 'M10',
     label: 'Lower Round 1 · Match 2',
     stage: 'lower',
     roundLabel: 'Lower Round 1',
     bestOf: 'FT2',
+    matchNumber: 'M10',
     slots: [
-      { type: 'loser', matchId: 'UBQ-B' },
-      { type: 'loser', matchId: 'UBR1-A' }
+      { type: 'loser', matchId: 'M7' },
+      { type: 'loser', matchId: 'M3' }
     ]
   },
   {
-    id: 'LBR1-C',
+    id: 'M11',
     label: 'Lower Round 1 · Match 3',
     stage: 'lower',
     roundLabel: 'Lower Round 1',
     bestOf: 'FT2',
+    matchNumber: 'M11',
     slots: [
-      { type: 'loser', matchId: 'UBQ-C' },
-      { type: 'loser', matchId: 'UBR1-D' }
+      { type: 'loser', matchId: 'M6' },
+      { type: 'loser', matchId: 'M1' }
     ]
   },
   {
-    id: 'LBR1-D',
+    id: 'M12',
     label: 'Lower Round 1 · Match 4',
     stage: 'lower',
     roundLabel: 'Lower Round 1',
     bestOf: 'FT2',
+    matchNumber: 'M12',
     slots: [
-      { type: 'loser', matchId: 'UBQ-D' },
-      { type: 'loser', matchId: 'UBR1-C' }
+      { type: 'loser', matchId: 'M5' },
+      { type: 'loser', matchId: 'M2' }
     ]
   },
   {
-    id: 'LBR2-A',
+    id: 'M13',
     label: 'Lower Round 2 · Match 1',
     stage: 'lower',
     roundLabel: 'Lower Round 2',
     bestOf: 'FT3',
+    matchNumber: 'M13',
     slots: [
-      { type: 'winner', matchId: 'LBR1-A' },
-      { type: 'winner', matchId: 'LBR1-B' }
+      { type: 'winner', matchId: 'M9' },
+      { type: 'winner', matchId: 'M10' }
     ]
   },
   {
-    id: 'LBR2-B',
+    id: 'M14',
     label: 'Lower Round 2 · Match 2',
     stage: 'lower',
     roundLabel: 'Lower Round 2',
     bestOf: 'FT3',
+    matchNumber: 'M14',
     slots: [
-      { type: 'winner', matchId: 'LBR1-C' },
-      { type: 'winner', matchId: 'LBR1-D' }
+      { type: 'winner', matchId: 'M11' },
+      { type: 'winner', matchId: 'M12' }
     ]
   },
   {
-    id: 'UBS-A',
+    id: 'M15',
     label: 'Upper Semifinal · Match 1',
     stage: 'upper',
     roundLabel: 'Upper Semifinals',
     bestOf: 'FT3',
+    matchNumber: 'M15',
     slots: [
-      { type: 'winner', matchId: 'UBQ-A' },
-      { type: 'winner', matchId: 'UBQ-B' }
+      { type: 'winner', matchId: 'M5' },
+      { type: 'winner', matchId: 'M6' }
     ]
   },
   {
-    id: 'UBS-B',
+    id: 'M16',
     label: 'Upper Semifinal · Match 2',
     stage: 'upper',
     roundLabel: 'Upper Semifinals',
     bestOf: 'FT3',
+    matchNumber: 'M16',
     slots: [
-      { type: 'winner', matchId: 'UBQ-C' },
-      { type: 'winner', matchId: 'UBQ-D' }
+      { type: 'winner', matchId: 'M7' },
+      { type: 'winner', matchId: 'M8' }
     ]
   },
   {
-    id: 'LBQ-A',
-    label: 'Lower Quarterfinal · Match 1',
+    id: 'M17',
+    label: 'Lower Round 3 · Match 1',
     stage: 'lower',
-    roundLabel: 'Lower Quarterfinals',
+    roundLabel: 'Lower Round 3',
     bestOf: 'FT3',
+    matchNumber: 'M17',
     slots: [
-      { type: 'loser', matchId: 'UBS-A' },
-      { type: 'winner', matchId: 'LBR2-A' }
+      { type: 'loser', matchId: 'M15' },
+      { type: 'winner', matchId: 'M13' }
     ]
   },
   {
-    id: 'LBQ-B',
-    label: 'Lower Quarterfinal · Match 2',
+    id: 'M18',
+    label: 'Lower Round 3 · Match 2',
     stage: 'lower',
-    roundLabel: 'Lower Quarterfinals',
+    roundLabel: 'Lower Round 3',
     bestOf: 'FT3',
+    matchNumber: 'M18',
     slots: [
-      { type: 'loser', matchId: 'UBS-B' },
-      { type: 'winner', matchId: 'LBR2-B' }
+      { type: 'loser', matchId: 'M16' },
+      { type: 'winner', matchId: 'M14' }
+    ]
+  },
+  {
+    id: 'M19',
+    label: 'Lower Semifinal',
+    stage: 'lower',
+    roundLabel: 'Lower Semifinal',
+    bestOf: 'FT3',
+    matchNumber: 'M19',
+    slots: [
+      { type: 'winner', matchId: 'M17' },
+      { type: 'winner', matchId: 'M18' }
     ]
   },
   {
@@ -205,20 +235,10 @@ const matches: MatchDefinition[] = [
     stage: 'upper',
     roundLabel: 'Upper Final',
     bestOf: 'FT3',
+    matchNumber: 'UBF',
     slots: [
-      { type: 'winner', matchId: 'UBS-A' },
-      { type: 'winner', matchId: 'UBS-B' }
-    ]
-  },
-  {
-    id: 'LBS',
-    label: 'Lower Bracket Semifinal',
-    stage: 'lower',
-    roundLabel: 'Lower Semifinal',
-    bestOf: 'FT3',
-    slots: [
-      { type: 'winner', matchId: 'LBQ-A' },
-      { type: 'winner', matchId: 'LBQ-B' }
+      { type: 'winner', matchId: 'M15' },
+      { type: 'winner', matchId: 'M16' }
     ]
   },
   {
@@ -227,17 +247,19 @@ const matches: MatchDefinition[] = [
     stage: 'lower',
     roundLabel: 'Lower Final',
     bestOf: 'FT3',
+    matchNumber: 'LBF',
     slots: [
-      { type: 'winner', matchId: 'LBS' },
-      { type: 'loser', matchId: 'UBF' }
+      { type: 'loser', matchId: 'UBF' },
+      { type: 'winner', matchId: 'M19' }
     ]
   },
   {
-    id: 'GF',
+    id: 'FINALS',
     label: 'Grand Final',
     stage: 'final',
     roundLabel: 'Grand Final',
     bestOf: 'FT4',
+    matchNumber: 'FINALS',
     slots: [
       { type: 'winner', matchId: 'UBF' },
       { type: 'winner', matchId: 'LBF' }
@@ -246,4 +268,3 @@ const matches: MatchDefinition[] = [
 ]
 
 export default matches
-
