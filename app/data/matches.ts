@@ -1,13 +1,17 @@
 import type { MatchDefinition } from '~/types/bracket'
 
+const roundKey = (key: string) => `bracket.rounds.${key}`
+const matchLabelKey = (id: string) => `bracket.matches.${id}.label`
+const matchScheduleKey = (id: string) => `bracket.matches.${id}.schedule`
+
 const matches: MatchDefinition[] = [
   {
     id: 'M1',
-    label: 'Upper Round 1 · Match 1',
+    labelKey: matchLabelKey('M1'),
     stage: 'upper',
-    roundLabel: 'Upper Round 1',
+    roundLabelKey: roundKey('upperRound1'),
     bestOf: 'FT2',
-  scheduleLabel: 'Nov 26 | 3:00 PT / 12:00 CET',
+    scheduleLabelKey: matchScheduleKey('M1'),
     matchNumber: 'M1',
     slots: [
       { type: 'team', teamId: 'team-cc' },
@@ -16,11 +20,11 @@ const matches: MatchDefinition[] = [
   },
   {
     id: 'M2',
-    label: 'Upper Round 1 · Match 2',
+    labelKey: matchLabelKey('M2'),
     stage: 'upper',
-    roundLabel: 'Upper Round 1',
+    roundLabelKey: roundKey('upperRound1'),
     bestOf: 'FT2',
-  scheduleLabel: 'Nov 26 | 4:15 PT / 13:15 CET',
+    scheduleLabelKey: matchScheduleKey('M2'),
     matchNumber: 'M2',
     slots: [
       { type: 'team', teamId: 'team-falcons' },
@@ -29,11 +33,11 @@ const matches: MatchDefinition[] = [
   },
   {
     id: 'M3',
-    label: 'Upper Round 1 · Match 3',
+    labelKey: matchLabelKey('M3'),
     stage: 'upper',
-    roundLabel: 'Upper Round 1',
+    roundLabelKey: roundKey('upperRound1'),
     bestOf: 'FT2',
-  scheduleLabel: 'Nov 26 | 5:30 PT / 14:30 CET',
+    scheduleLabelKey: matchScheduleKey('M3'),
     matchNumber: 'M3',
     slots: [
       { type: 'team', teamId: 'al-qadsiah' },
@@ -42,11 +46,11 @@ const matches: MatchDefinition[] = [
   },
   {
     id: 'M4',
-    label: 'Upper Round 1 · Match 4',
+    labelKey: matchLabelKey('M4'),
     stage: 'upper',
-    roundLabel: 'Upper Round 1',
+    roundLabelKey: roundKey('upperRound1'),
     bestOf: 'FT2',
-  scheduleLabel: 'Nov 26 | 6:45 PT / 15:45 CET',
+    scheduleLabelKey: matchScheduleKey('M4'),
     matchNumber: 'M4',
     slots: [
       { type: 'team', teamId: 'spacestation' },
@@ -55,11 +59,11 @@ const matches: MatchDefinition[] = [
   },
   {
     id: 'M5',
-    label: 'Upper Round 2 · Match 1',
+    labelKey: matchLabelKey('M5'),
     stage: 'upper',
-    roundLabel: 'Upper Round 2',
+    roundLabelKey: roundKey('upperRound2'),
     bestOf: 'FT3',
-  scheduleLabel: 'Nov 27 | 3:00 PT / 12:00 CET',
+    scheduleLabelKey: matchScheduleKey('M5'),
     matchNumber: 'M5',
     slots: [
       { type: 'team', teamId: 'crazy-raccoon' },
@@ -68,11 +72,11 @@ const matches: MatchDefinition[] = [
   },
   {
     id: 'M6',
-    label: 'Upper Round 2 · Match 2',
+    labelKey: matchLabelKey('M6'),
     stage: 'upper',
-    roundLabel: 'Upper Round 2',
+    roundLabelKey: roundKey('upperRound2'),
     bestOf: 'FT3',
-  scheduleLabel: 'Nov 27 | 4:45 PT / 13:45 CET',
+    scheduleLabelKey: matchScheduleKey('M6'),
     matchNumber: 'M6',
     slots: [
       { type: 'team', teamId: 'weibo-gaming' },
@@ -81,11 +85,11 @@ const matches: MatchDefinition[] = [
   },
   {
     id: 'M7',
-    label: 'Upper Round 2 · Match 3',
+    labelKey: matchLabelKey('M7'),
     stage: 'upper',
-    roundLabel: 'Upper Round 2',
+    roundLabelKey: roundKey('upperRound2'),
     bestOf: 'FT3',
-  scheduleLabel: 'Nov 27 | 6:30 PT / 15:30 CET',
+    scheduleLabelKey: matchScheduleKey('M7'),
     matchNumber: 'M7',
     slots: [
       { type: 'team', teamId: 'twisted-minds' },
@@ -94,11 +98,11 @@ const matches: MatchDefinition[] = [
   },
   {
     id: 'M8',
-    label: 'Upper Round 2 · Match 4',
+    labelKey: matchLabelKey('M8'),
     stage: 'upper',
-    roundLabel: 'Upper Round 2',
+    roundLabelKey: roundKey('upperRound2'),
     bestOf: 'FT3',
-  scheduleLabel: 'Nov 27 | 8:15 PT / 17:15 CET',
+    scheduleLabelKey: matchScheduleKey('M8'),
     matchNumber: 'M8',
     slots: [
       { type: 'team', teamId: 'team-liquid' },
@@ -107,11 +111,11 @@ const matches: MatchDefinition[] = [
   },
   {
     id: 'M9',
-    label: 'Lower Round 1 · Match 1',
+    labelKey: matchLabelKey('M9'),
     stage: 'lower',
-    roundLabel: 'Lower Round 1',
+    roundLabelKey: roundKey('lowerRound1'),
     bestOf: 'FT2',
-  scheduleLabel: 'Nov 28 | 3:00 PT / 12:00 CET',
+    scheduleLabelKey: matchScheduleKey('M9'),
     matchNumber: 'M9',
     slots: [
       { type: 'loser', matchId: 'M8' },
@@ -120,11 +124,11 @@ const matches: MatchDefinition[] = [
   },
   {
     id: 'M10',
-    label: 'Lower Round 1 · Match 2',
+    labelKey: matchLabelKey('M10'),
     stage: 'lower',
-    roundLabel: 'Lower Round 1',
+    roundLabelKey: roundKey('lowerRound1'),
     bestOf: 'FT2',
-  scheduleLabel: 'Nov 28 | 4:15 PT / 13:15 CET',
+    scheduleLabelKey: matchScheduleKey('M10'),
     matchNumber: 'M10',
     slots: [
       { type: 'loser', matchId: 'M7' },
@@ -133,11 +137,11 @@ const matches: MatchDefinition[] = [
   },
   {
     id: 'M11',
-    label: 'Lower Round 1 · Match 3',
+    labelKey: matchLabelKey('M11'),
     stage: 'lower',
-    roundLabel: 'Lower Round 1',
+    roundLabelKey: roundKey('lowerRound1'),
     bestOf: 'FT2',
-  scheduleLabel: 'Nov 28 | 5:30 PT / 14:30 CET',
+    scheduleLabelKey: matchScheduleKey('M11'),
     matchNumber: 'M11',
     slots: [
       { type: 'loser', matchId: 'M6' },
@@ -146,11 +150,11 @@ const matches: MatchDefinition[] = [
   },
   {
     id: 'M12',
-    label: 'Lower Round 1 · Match 4',
+    labelKey: matchLabelKey('M12'),
     stage: 'lower',
-    roundLabel: 'Lower Round 1',
+    roundLabelKey: roundKey('lowerRound1'),
     bestOf: 'FT2',
-  scheduleLabel: 'Nov 28 | 6:45 PT / 15:45 CET',
+    scheduleLabelKey: matchScheduleKey('M12'),
     matchNumber: 'M12',
     slots: [
       { type: 'loser', matchId: 'M5' },
@@ -159,11 +163,11 @@ const matches: MatchDefinition[] = [
   },
   {
     id: 'M13',
-    label: 'Lower Round 2 · Match 1',
+    labelKey: matchLabelKey('M13'),
     stage: 'lower',
-    roundLabel: 'Lower Round 2',
+    roundLabelKey: roundKey('lowerRound2'),
     bestOf: 'FT3',
-  scheduleLabel: 'Nov 28 | 8:00 PT / 17:00 CET',
+    scheduleLabelKey: matchScheduleKey('M13'),
     matchNumber: 'M13',
     slots: [
       { type: 'winner', matchId: 'M9' },
@@ -172,11 +176,11 @@ const matches: MatchDefinition[] = [
   },
   {
     id: 'M14',
-    label: 'Lower Round 2 · Match 2',
+    labelKey: matchLabelKey('M14'),
     stage: 'lower',
-    roundLabel: 'Lower Round 2',
+    roundLabelKey: roundKey('lowerRound2'),
     bestOf: 'FT3',
-  scheduleLabel: 'Nov 28 | 9:45 PT / 18:45 CET',
+    scheduleLabelKey: matchScheduleKey('M14'),
     matchNumber: 'M14',
     slots: [
       { type: 'winner', matchId: 'M11' },
@@ -185,11 +189,11 @@ const matches: MatchDefinition[] = [
   },
   {
     id: 'M15',
-    label: 'Upper Semifinal · Match 1',
+    labelKey: matchLabelKey('M15'),
     stage: 'upper',
-    roundLabel: 'Upper Semifinals',
+    roundLabelKey: roundKey('upperSemifinals'),
     bestOf: 'FT3',
-  scheduleLabel: 'Nov 29 | 3:45 PT / 12:45 CET',
+    scheduleLabelKey: matchScheduleKey('M15'),
     matchNumber: 'M15',
     slots: [
       { type: 'winner', matchId: 'M5' },
@@ -198,11 +202,11 @@ const matches: MatchDefinition[] = [
   },
   {
     id: 'M16',
-    label: 'Upper Semifinal · Match 2',
+    labelKey: matchLabelKey('M16'),
     stage: 'upper',
-    roundLabel: 'Upper Semifinals',
+    roundLabelKey: roundKey('upperSemifinals'),
     bestOf: 'FT3',
-  scheduleLabel: 'Nov 29 | 5:30 PT / 14:30 CET',
+    scheduleLabelKey: matchScheduleKey('M16'),
     matchNumber: 'M16',
     slots: [
       { type: 'winner', matchId: 'M7' },
@@ -211,11 +215,11 @@ const matches: MatchDefinition[] = [
   },
   {
     id: 'M17',
-    label: 'Lower Round 3 · Match 1',
+    labelKey: matchLabelKey('M17'),
     stage: 'lower',
-    roundLabel: 'Lower Round 3',
+    roundLabelKey: roundKey('lowerRound3'),
     bestOf: 'FT3',
-  scheduleLabel: 'Nov 29 | 5:30 PT / 14:30 CET',
+    scheduleLabelKey: matchScheduleKey('M17'),
     matchNumber: 'M17',
     slots: [
       { type: 'loser', matchId: 'M15' },
@@ -224,11 +228,11 @@ const matches: MatchDefinition[] = [
   },
   {
     id: 'M18',
-    label: 'Lower Round 3 · Match 2',
+    labelKey: matchLabelKey('M18'),
     stage: 'lower',
-    roundLabel: 'Lower Round 3',
+    roundLabelKey: roundKey('lowerRound3'),
     bestOf: 'FT3',
-  scheduleLabel: 'Nov 29 | 7:15 PT / 16:15 CET',
+    scheduleLabelKey: matchScheduleKey('M18'),
     matchNumber: 'M18',
     slots: [
       { type: 'loser', matchId: 'M16' },
@@ -237,11 +241,11 @@ const matches: MatchDefinition[] = [
   },
   {
     id: 'M19',
-    label: 'Lower Semifinal',
+    labelKey: matchLabelKey('M19'),
     stage: 'lower',
-    roundLabel: 'Lower Semifinal',
+    roundLabelKey: roundKey('lowerSemifinal'),
     bestOf: 'FT3',
-  scheduleLabel: 'Nov 29 | 9:30 PT / 18:30 CET',
+    scheduleLabelKey: matchScheduleKey('M19'),
     matchNumber: 'M19',
     slots: [
       { type: 'winner', matchId: 'M17' },
@@ -250,11 +254,11 @@ const matches: MatchDefinition[] = [
   },
   {
     id: 'UBF',
-    label: 'Upper Bracket Final',
+    labelKey: matchLabelKey('UBF'),
     stage: 'upper',
-    roundLabel: 'Upper Final',
+    roundLabelKey: roundKey('upperFinal'),
     bestOf: 'FT3',
-  scheduleLabel: 'Nov 30 | 2:00 PT / 11:00 CET',
+    scheduleLabelKey: matchScheduleKey('UBF'),
     matchNumber: 'UBF',
     slots: [
       { type: 'winner', matchId: 'M15' },
@@ -263,11 +267,11 @@ const matches: MatchDefinition[] = [
   },
   {
     id: 'LBF',
-    label: 'Lower Bracket Final',
+    labelKey: matchLabelKey('LBF'),
     stage: 'lower',
-    roundLabel: 'Lower Final',
+    roundLabelKey: roundKey('lowerFinal'),
     bestOf: 'FT3',
-  scheduleLabel: 'Nov 30 | 3:45 PT / 12:45 CET',
+    scheduleLabelKey: matchScheduleKey('LBF'),
     matchNumber: 'LBF',
     slots: [
       { type: 'loser', matchId: 'UBF' },
@@ -276,11 +280,11 @@ const matches: MatchDefinition[] = [
   },
   {
     id: 'FINALS',
-    label: 'Grand Final',
+    labelKey: matchLabelKey('FINALS'),
     stage: 'final',
-    roundLabel: 'Grand Final',
+    roundLabelKey: roundKey('grandFinal'),
     bestOf: 'FT4',
-  scheduleLabel: 'Nov 30 | 6:30 PT / 15:30 CET',
+    scheduleLabelKey: matchScheduleKey('FINALS'),
     matchNumber: 'FINALS',
     slots: [
       { type: 'winner', matchId: 'UBF' },

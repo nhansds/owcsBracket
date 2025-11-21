@@ -36,7 +36,7 @@
       </div>
       <div class="border-t border-white/10 pt-3">
         <p class="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-slate-400">
-          Roster
+          {{ t('teams.rosterHeading') }}
         </p>
         <div class="flex flex-wrap gap-2">
           <span
@@ -60,7 +60,7 @@
         class="mt-3 w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-xs font-medium text-slate-300 transition hover:bg-white/10 hover:text-white"
         @click="closePanel"
       >
-        Close
+        {{ t('ui.actions.close') }}
       </button>
     </div>
   </Transition>
@@ -68,10 +68,12 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
+import { useI18n } from 'vue-i18n'
 import type { PlayerRole } from '~/types/bracket'
 import { useTeamDetails } from '~/composables/useTeamDetails'
 
 const { activeTeam, setActiveTeam } = useTeamDetails()
+const { t } = useI18n()
 
 const team = computed(() => activeTeam.value)
 
@@ -85,11 +87,11 @@ const roleIcons: Record<PlayerRole, string> = {
   support: 'roles/16px-Support_Header.png'
 }
 
-const roleLabels: Record<PlayerRole, string> = {
-  tank: 'Tank role',
-  damage: 'Damage role',
-  support: 'Support role'
-}
+const roleLabels = computed<Record<PlayerRole, string>>(() => ({
+  tank: t('teams.roles.tank'),
+  damage: t('teams.roles.damage'),
+  support: t('teams.roles.support')
+}))
 
 const countryFlags: Record<string, string> = {
   'South Korea': '🇰🇷',

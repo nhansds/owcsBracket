@@ -3,6 +3,7 @@ export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
   css: ['~/assets/css/tailwind.css'],
+  modules: ['@nuxtjs/i18n'],
   app: {
     baseURL: '/owcsBracket/',
     buildAssetsDir: '/_nuxt/',
@@ -52,5 +53,17 @@ export default defineNuxtConfig({
   },
   routeRules: {
     '/**': { prerender: true }
+  },
+  i18n: {
+    strategy: 'no_prefix',
+    detectBrowserLanguage: false,
+    defaultLocale: 'en',
+    langDir: 'locales',
+    locales: [
+      { code: 'en', iso: 'en-US', file: 'en-US.json', name: 'English' },
+      { code: 'fr', iso: 'fr-FR', file: 'fr-FR.json', name: 'Français' },
+      { code: 'ko', iso: 'ko-KR', file: 'ko-KR.json', name: '한국어' }
+    ],
+    vueI18n: './i18n.config.ts'
   }
 })

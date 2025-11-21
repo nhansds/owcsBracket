@@ -1,0 +1,188 @@
+{
+  "app": {
+    "hero": {
+      "overline": "Finales mondiales OWCS 2025",
+      "title": "Créateur de bracket",
+      "subtitle": "Choisis tes vainqueurs, règle les scores et partage ton bracket via un lien unique."
+    },
+    "footer": {
+      "signature": "Réalisé avec ❤️ par Nhans",
+      "teamCTA": "Allez Team Peps !",
+      "teamLogoAlt": "Logo de Team Peps",
+      "flagAlt": "Drapeau français",
+      "links": {
+        "github": "GitHub",
+        "gitlab": "GitLab",
+        "site": "nhans.fr"
+      }
+    }
+  },
+  "ui": {
+    "team": {
+      "logoAlt": "Logo {team}",
+      "generic": "Équipe"
+    },
+    "node": {
+      "winnerLabel": "Vainqueur",
+      "toBeDecided": "À déterminer",
+      "winnerPrefix": "G -",
+      "loserPrefix": "P -"
+    },
+    "status": {
+      "pending": "En attente",
+      "tbd": "À confirmer"
+    },
+    "actions": {
+      "reset": "Réinitialiser",
+      "copy": "Copier",
+      "close": "Fermer"
+    },
+    "language": {
+      "switcherLabel": "Changer de langue"
+    }
+  },
+  "teams": {
+    "participating": "Équipes participantes",
+    "rosterHeading": "Composition",
+    "roles": {
+      "tank": "Rôle tank",
+      "damage": "Rôle dégâts",
+      "support": "Rôle soutien"
+    }
+  },
+  "bracket": {
+    "rules": {
+      "heading": "Règles du bracket",
+      "paragraph1": {
+        "part1": "Les Finales mondiales OWCS 2025 utilisent un bracket à double élimination pour 12 équipes. Les têtes de série régionales commencent directement au deuxième tour, les premiers matches se jouent ",
+        "part2": ", les suivants en ",
+        "part3": " sauf la grande finale disputée en ",
+        "ending": "."
+      },
+      "paragraph2": "Clique sur une équipe pour choisir le vainqueur puis fixe le score. Chaque résultat se propage automatiquement aux rencontres suivantes.",
+      "firstTo2": "En 2 manches gagnantes",
+      "firstTo3": "En 3 manches gagnantes",
+      "firstTo4": "En 4 manches gagnantes"
+    },
+    "stats": {
+      "totalMatches": "Nombre total de matches",
+      "matchesCompleted": "Matches terminés"
+    },
+    "actions": {
+      "resetAll": "Tout réinitialiser"
+    },
+    "share": {
+      "label": "Lien partageable",
+      "success": "Lien copié dans le presse-papiers ✅",
+      "failure": "Copie impossible automatiquement, sélectionne le lien."
+    },
+    "sections": {
+      "upper": "Arbre supérieur",
+      "lower": "Arbre inférieur",
+      "finals": "Finales"
+    },
+    "rounds": {
+      "upperRound1": "Tour supérieur 1",
+      "upperRound2": "Tour supérieur 2",
+      "upperSemifinals": "Demi-finales supérieures",
+      "upperFinal": "Finale supérieure",
+      "lowerRound1": "Tour inférieur 1",
+      "lowerRound2": "Tour inférieur 2",
+      "lowerRound3": "Tour inférieur 3",
+      "lowerSemifinal": "Demi-finale inférieure",
+      "lowerFinal": "Finale inférieure",
+      "grandFinal": "Grande finale"
+    },
+    "matches": {
+      "M1": {
+        "label": "Tour supérieur 1 · Match 1",
+        "schedule": "26 nov. | 03:00 PT / 12:00 CET"
+      },
+      "M2": {
+        "label": "Tour supérieur 1 · Match 2",
+        "schedule": "26 nov. | 04:15 PT / 13:15 CET"
+      },
+      "M3": {
+        "label": "Tour supérieur 1 · Match 3",
+        "schedule": "26 nov. | 05:30 PT / 14:30 CET"
+      },
+      "M4": {
+        "label": "Tour supérieur 1 · Match 4",
+        "schedule": "26 nov. | 06:45 PT / 15:45 CET"
+      },
+      "M5": {
+        "label": "Tour supérieur 2 · Match 1",
+        "schedule": "27 nov. | 03:00 PT / 12:00 CET"
+      },
+      "M6": {
+        "label": "Tour supérieur 2 · Match 2",
+        "schedule": "27 nov. | 04:45 PT / 13:45 CET"
+      },
+      "M7": {
+        "label": "Tour supérieur 2 · Match 3",
+        "schedule": "27 nov. | 06:30 PT / 15:30 CET"
+      },
+      "M8": {
+        "label": "Tour supérieur 2 · Match 4",
+        "schedule": "27 nov. | 08:15 PT / 17:15 CET"
+      },
+      "M9": {
+        "label": "Tour inférieur 1 · Match 1",
+        "schedule": "28 nov. | 03:00 PT / 12:00 CET"
+      },
+      "M10": {
+        "label": "Tour inférieur 1 · Match 2",
+        "schedule": "28 nov. | 04:15 PT / 13:15 CET"
+      },
+      "M11": {
+        "label": "Tour inférieur 1 · Match 3",
+        "schedule": "28 nov. | 05:30 PT / 14:30 CET"
+      },
+      "M12": {
+        "label": "Tour inférieur 1 · Match 4",
+        "schedule": "28 nov. | 06:45 PT / 15:45 CET"
+      },
+      "M13": {
+        "label": "Tour inférieur 2 · Match 1",
+        "schedule": "28 nov. | 08:00 PT / 17:00 CET"
+      },
+      "M14": {
+        "label": "Tour inférieur 2 · Match 2",
+        "schedule": "28 nov. | 09:45 PT / 18:45 CET"
+      },
+      "M15": {
+        "label": "Demi-finale supérieure · Match 1",
+        "schedule": "29 nov. | 03:45 PT / 12:45 CET"
+      },
+      "M16": {
+        "label": "Demi-finale supérieure · Match 2",
+        "schedule": "29 nov. | 05:30 PT / 14:30 CET"
+      },
+      "M17": {
+        "label": "Tour inférieur 3 · Match 1",
+        "schedule": "29 nov. | 05:30 PT / 14:30 CET"
+      },
+      "M18": {
+        "label": "Tour inférieur 3 · Match 2",
+        "schedule": "29 nov. | 07:15 PT / 16:15 CET"
+      },
+      "M19": {
+        "label": "Demi-finale inférieure",
+        "schedule": "29 nov. | 09:30 PT / 18:30 CET"
+      },
+      "UBF": {
+        "label": "Finale de l'arbre supérieur",
+        "schedule": "30 nov. | 02:00 PT / 11:00 CET"
+      },
+      "LBF": {
+        "label": "Finale de l'arbre inférieur",
+        "schedule": "30 nov. | 03:45 PT / 12:45 CET"
+      },
+      "FINALS": {
+        "label": "Grande finale",
+        "schedule": "30 nov. | 06:30 PT / 15:30 CET"
+      }
+    }
+  }
+}
+

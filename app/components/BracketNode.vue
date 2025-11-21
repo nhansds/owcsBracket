@@ -2,16 +2,16 @@
   <div :class="nodeClasses">
     <header class="mb-3 text-[11px] uppercase tracking-[0.2em] text-slate-400">
       <div class="flex items-center justify-between gap-3">
-        <span class="truncate">{{ match.roundLabel }}</span>
+        <span class="truncate">{{ t(match.roundLabelKey) }}</span>
         <span class="font-semibold text-secondary-200">
           {{ match.matchNumber ? `${match.matchNumber} | ${match.bestOf}` : match.bestOf }}
         </span>
       </div>
       <p
-        v-if="match.scheduleLabel"
+        v-if="match.scheduleLabelKey"
         class="mt-1 text-[10px] font-semibold uppercase tracking-[0.25em] text-white/70"
       >
-        {{ match.scheduleLabel }}
+        {{ t(match.scheduleLabelKey) }}
       </p>
     </header>
 
@@ -30,7 +30,7 @@
             <img
               v-if="team?.logo"
               :src="team.logo"
-              :alt="`${team?.shortName ?? 'Team'} logo`"
+              :alt="t('ui.team.logoAlt', { team: team?.shortName ?? t('ui.team.generic') })"
               class="h-6 w-6 object-contain"
               loading="lazy"
             />
@@ -65,7 +65,7 @@
 
     <footer class="mt-3 flex items-center justify-between text-[11px] uppercase tracking-[0.2em] text-slate-400">
       <div class="flex items-center gap-2">
-        <span class="text-white/70">Winner</span>
+        <span class="text-white/70">{{ t('ui.node.winnerLabel') }}</span>
         <span class="text-secondary-200">{{ match.winner?.name ?? '—' }}</span>
       </div>
       <button
@@ -74,7 +74,7 @@
         class="text-[10px] font-semibold tracking-[0.3em] text-slate-500 hover:text-white"
         @click="clearMatch"
       >
-        Reset
+        {{ t('ui.actions.reset') }}
       </button>
     </footer>
   </div>
@@ -82,6 +82,7 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
+import { useI18n } from 'vue-i18n'
 import teams from '~/data/teams'
 import type { HydratedMatch, MatchSlotSource } from '~/types/bracket'
 
@@ -91,16 +92,17 @@ const props = defineProps<{
 }>()
 
 const { setMatchResult, clearMatchResult } = useBracket()
+const { t } = useI18n()
 
 type SlotDescriptor = {
   name: string
   region: string
 }
 
-const defaultSlotDescriptor: SlotDescriptor = {
-  name: 'To be decided',
-  region: 'Pending'
-}
+const defaultSlotDescriptor = computed<SlotDescriptor>(() => ({
+  name: t('ui.node.toBeDecided'),
+  region: t('ui.status.pending')
+}))
 
 const teamDictionary = Object.fromEntries(teams.map(team => [team.id, team]))
 
@@ -108,16 +110,15 @@ const describeSlot = (slot: MatchSlotSource): SlotDescriptor => {
   if (slot.type === 'team') {
     const fallbackTeam = teamDictionary[slot.teamId]
     return {
-      name: fallbackTeam?.name ?? defaultSlotDescriptor.name,
-      region: fallbackTeam?.region ?? defaultSlotDescriptor.region
+      name: fallbackTeam?.name ?? defaultSlotDescriptor.value.name,
+      region: fallbackTeam?.region ?? defaultSlotDescriptor.value.region
     }
   }
   const isWinner = slot.type === 'winner'
-  const prefix = isWinner ? 'W -' : 'L -'
-  const shortCode = 'Pending'
+  const prefix = t(isWinner ? 'ui.node.winnerPrefix' : 'ui.node.loserPrefix')
   return {
     name: `${prefix} ${slot.matchId}`,
-    region: shortCode
+    region: t('ui.status.pending')
   }
 }
 
@@ -133,12 +134,12 @@ const rowDetails = computed<[SlotDescriptor, SlotDescriptor]>(() => {
     if (team) {
       return { name: team.name, region: team.region }
     }
-    return slotPlaceholders.value[index] ?? defaultSlotDescriptor
+    return slotPlaceholders.value[index] ?? defaultSlotDescriptor.value
   }) as [SlotDescriptor, SlotDescriptor]
 })
 
 const displayForRow = (index: number): SlotDescriptor =>
-  rowDetails.value[index] ?? defaultSlotDescriptor
+  rowDetails.value[index] ?? defaultSlotDescriptor.value
 
 const variantClass = computed(() =>
   props.variant === 'final'

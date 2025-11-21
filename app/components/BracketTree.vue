@@ -2,13 +2,13 @@
   <div class="bracket-tree space-y-16">
     <section class="bracket-branch space-y-4">
       <div class="bracket-branch-title">
-        <h2>Upper Bracket</h2>
+        <h2>{{ t('bracket.sections.upper') }}</h2>
         <div class="bracket-branch-line" />
       </div>
       <div class="bracket-columns">
-        <template v-for="(column, columnIndex) in upperColumns" :key="column.title">
+        <template v-for="(column, columnIndex) in upperColumns" :key="column.titleKey">
           <div class="bracket-column">
-            <p class="bracket-column-title">{{ column.title }}</p>
+            <p class="bracket-column-title">{{ t(column.titleKey) }}</p>
             <div class="bracket-column-body">
               <BracketNode
                 v-for="match in column.matches"
@@ -27,13 +27,13 @@
 
     <section class="bracket-branch space-y-4">
       <div class="bracket-branch-title">
-        <h2>Lower Bracket</h2>
+        <h2>{{ t('bracket.sections.lower') }}</h2>
         <div class="bracket-branch-line" />
       </div>
       <div class="bracket-columns">
-        <template v-for="(column, columnIndex) in lowerColumns" :key="column.title">
+        <template v-for="(column, columnIndex) in lowerColumns" :key="column.titleKey">
           <div class="bracket-column">
-            <p class="bracket-column-title">{{ column.title }}</p>
+            <p class="bracket-column-title">{{ t(column.titleKey) }}</p>
             <div class="bracket-column-body">
               <BracketNode
                 v-for="match in column.matches"
@@ -52,13 +52,13 @@
 
     <section class="bracket-branch space-y-4">
       <div class="bracket-branch-title">
-        <h2>Finales</h2>
+        <h2>{{ t('bracket.sections.finals') }}</h2>
         <div class="bracket-branch-line" />
       </div>
       <div v-if="finalMatches.length" class="bracket-finals">
         <template v-for="(entry, index) in finalMatches" :key="entry.label">
           <div class="bracket-finals-node">
-            <p class="bracket-finals-label">{{ entry.label }}</p>
+            <p class="bracket-finals-label">{{ t(entry.labelKey) }}</p>
             <BracketNode :match="entry.match" variant="final" />
           </div>
           <div v-if="index < finalMatches.length - 1" class="bracket-finals-connector" />
@@ -70,11 +70,12 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
+import { useI18n } from 'vue-i18n'
 import BracketNode from '~/components/BracketNode.vue'
 import type { HydratedMatch } from '~/types/bracket'
 
 type BracketColumn = {
-  title: string
+  titleKey: string
   matches: HydratedMatch[]
 }
 
@@ -90,13 +91,15 @@ const props = defineProps<{
   finals: FinalsLayout
 }>()
 
+const { t } = useI18n()
+
 const finalMatches = computed(() =>
   [
-    { label: 'Upper Final', match: props.finals.upperFinal },
-    { label: 'Lower Final', match: props.finals.lowerFinal },
-    { label: 'Grand Final', match: props.finals.grandFinal }
+    { labelKey: 'bracket.rounds.upperFinal', match: props.finals.upperFinal },
+    { labelKey: 'bracket.rounds.lowerFinal', match: props.finals.lowerFinal },
+    { labelKey: 'bracket.rounds.grandFinal', match: props.finals.grandFinal }
   ].filter(
-    (entry): entry is { label: string; match: HydratedMatch } =>
+    (entry): entry is { labelKey: string; match: HydratedMatch } =>
       Boolean(entry.match)
   )
 )

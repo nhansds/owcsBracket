@@ -7,7 +7,7 @@
           type="button"
           @click="toggle"
         >
-          <span>Participating Teams</span>
+          <span>{{ t('teams.participating') }}</span>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
@@ -52,7 +52,7 @@
             <p class="mb-3 text-xs text-slate-500">{{ team.region }}</p>
             <div class="border-t border-white/10 pt-3">
               <p class="mb-2 text-[10px] font-semibold uppercase tracking-[0.2em] text-slate-500">
-                Roster
+                {{ t('teams.rosterHeading') }}
               </p>
               <div class="flex flex-wrap gap-2">
                 <span
@@ -82,8 +82,11 @@
 import type { PlayerRole } from '~/types/bracket'
 import { useBracket } from '~/composables/useBracket'
 import Collapsible from '../components/Collapsible.vue'
+import { computed } from 'vue'
+import { useI18n } from 'vue-i18n'
 
 const { teams } = useBracket()
+const { t } = useI18n()
 
 const roleIcons: Record<PlayerRole, string> = {
   tank: 'roles/16px-Tank_Header.png',
@@ -91,11 +94,11 @@ const roleIcons: Record<PlayerRole, string> = {
   support: 'roles/16px-Support_Header.png'
 }
 
-const roleLabels: Record<PlayerRole, string> = {
-  tank: 'Tank role',
-  damage: 'Damage role',
-  support: 'Support role'
-}
+const roleLabels = computed<Record<PlayerRole, string>>(() => ({
+  tank: t('teams.roles.tank'),
+  damage: t('teams.roles.damage'),
+  support: t('teams.roles.support')
+}))
 
 const countryFlags: Record<string, string> = {
   'South Korea': '🇰🇷',

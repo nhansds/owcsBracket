@@ -1,0 +1,188 @@
+{
+  "app": {
+    "hero": {
+      "overline": "OWCS 2025 월드 파이널",
+      "title": "브래킷 빌더",
+      "subtitle": "우승팀을 선택하고 점수를 입력한 뒤 하나의 링크로 브래킷을 공유하세요."
+    },
+    "footer": {
+      "signature": "Nhans가 ❤️를 담아 만들었습니다",
+      "teamCTA": "고 팀 펩스!",
+      "teamLogoAlt": "팀 펩스 로고",
+      "flagAlt": "프랑스 국기",
+      "links": {
+        "github": "GitHub",
+        "gitlab": "GitLab",
+        "site": "nhans.fr"
+      }
+    }
+  },
+  "ui": {
+    "team": {
+      "logoAlt": "{team} 로고",
+      "generic": "팀"
+    },
+    "node": {
+      "winnerLabel": "승자",
+      "toBeDecided": "추후 확정",
+      "winnerPrefix": "승 -",
+      "loserPrefix": "패 -"
+    },
+    "status": {
+      "pending": "대기 중",
+      "tbd": "미정"
+    },
+    "actions": {
+      "reset": "초기화",
+      "copy": "복사",
+      "close": "닫기"
+    },
+    "language": {
+      "switcherLabel": "언어 변경"
+    }
+  },
+  "teams": {
+    "participating": "참가 팀",
+    "rosterHeading": "로스터",
+    "roles": {
+      "tank": "탱커 역할",
+      "damage": "딜러 역할",
+      "support": "서포트 역할"
+    }
+  },
+  "bracket": {
+    "rules": {
+      "heading": "브래킷 규칙",
+      "paragraph1": {
+        "part1": "OWCS 2025 월드 파이널은 12개 팀이 참가하는 더블 엘리미네이션 브래킷을 사용합니다. 지역 1번 시드는 2라운드부터 시작하며, 오프닝 매치는 ",
+        "part2": ", 이후 경기는 ",
+        "part3": ", 그랜드 파이널만 ",
+        "ending": " 형식으로 진행됩니다."
+      },
+      "paragraph2": "팀을 클릭해 승자를 고르고 점수를 입력하면 결과가 다음 경기로 자동 반영됩니다.",
+      "firstTo2": "선 2선승",
+      "firstTo3": "선 3선승",
+      "firstTo4": "선 4선승"
+    },
+    "stats": {
+      "totalMatches": "총 경기 수",
+      "matchesCompleted": "완료된 경기"
+    },
+    "actions": {
+      "resetAll": "전체 초기화"
+    },
+    "share": {
+      "label": "공유 링크",
+      "success": "링크를 클립보드에 복사했어요 ✅",
+      "failure": "자동 복사에 실패했어요. 링크를 직접 선택해주세요."
+    },
+    "sections": {
+      "upper": "승자 브래킷",
+      "lower": "패자 브래킷",
+      "finals": "결승전"
+    },
+    "rounds": {
+      "upperRound1": "승자전 1라운드",
+      "upperRound2": "승자전 2라운드",
+      "upperSemifinals": "승자 준결승",
+      "upperFinal": "승자 결승",
+      "lowerRound1": "패자전 1라운드",
+      "lowerRound2": "패자전 2라운드",
+      "lowerRound3": "패자전 3라운드",
+      "lowerSemifinal": "패자 준결승",
+      "lowerFinal": "패자 결승",
+      "grandFinal": "그랜드 파이널"
+    },
+    "matches": {
+      "M1": {
+        "label": "승자전 1라운드 · 경기 1",
+        "schedule": "11월 26일 | 3:00 PT / 12:00 CET"
+      },
+      "M2": {
+        "label": "승자전 1라운드 · 경기 2",
+        "schedule": "11월 26일 | 4:15 PT / 13:15 CET"
+      },
+      "M3": {
+        "label": "승자전 1라운드 · 경기 3",
+        "schedule": "11월 26일 | 5:30 PT / 14:30 CET"
+      },
+      "M4": {
+        "label": "승자전 1라운드 · 경기 4",
+        "schedule": "11월 26일 | 6:45 PT / 15:45 CET"
+      },
+      "M5": {
+        "label": "승자전 2라운드 · 경기 1",
+        "schedule": "11월 27일 | 3:00 PT / 12:00 CET"
+      },
+      "M6": {
+        "label": "승자전 2라운드 · 경기 2",
+        "schedule": "11월 27일 | 4:45 PT / 13:45 CET"
+      },
+      "M7": {
+        "label": "승자전 2라운드 · 경기 3",
+        "schedule": "11월 27일 | 6:30 PT / 15:30 CET"
+      },
+      "M8": {
+        "label": "승자전 2라운드 · 경기 4",
+        "schedule": "11월 27일 | 8:15 PT / 17:15 CET"
+      },
+      "M9": {
+        "label": "패자전 1라운드 · 경기 1",
+        "schedule": "11월 28일 | 3:00 PT / 12:00 CET"
+      },
+      "M10": {
+        "label": "패자전 1라운드 · 경기 2",
+        "schedule": "11월 28일 | 4:15 PT / 13:15 CET"
+      },
+      "M11": {
+        "label": "패자전 1라운드 · 경기 3",
+        "schedule": "11월 28일 | 5:30 PT / 14:30 CET"
+      },
+      "M12": {
+        "label": "패자전 1라운드 · 경기 4",
+        "schedule": "11월 28일 | 6:45 PT / 15:45 CET"
+      },
+      "M13": {
+        "label": "패자전 2라운드 · 경기 1",
+        "schedule": "11월 28일 | 8:00 PT / 17:00 CET"
+      },
+      "M14": {
+        "label": "패자전 2라운드 · 경기 2",
+        "schedule": "11월 28일 | 9:45 PT / 18:45 CET"
+      },
+      "M15": {
+        "label": "승자 준결승 · 경기 1",
+        "schedule": "11월 29일 | 3:45 PT / 12:45 CET"
+      },
+      "M16": {
+        "label": "승자 준결승 · 경기 2",
+        "schedule": "11월 29일 | 5:30 PT / 14:30 CET"
+      },
+      "M17": {
+        "label": "패자전 3라운드 · 경기 1",
+        "schedule": "11월 29일 | 5:30 PT / 14:30 CET"
+      },
+      "M18": {
+        "label": "패자전 3라운드 · 경기 2",
+        "schedule": "11월 29일 | 7:15 PT / 16:15 CET"
+      },
+      "M19": {
+        "label": "패자 준결승",
+        "schedule": "11월 29일 | 9:30 PT / 18:30 CET"
+      },
+      "UBF": {
+        "label": "승자 결승",
+        "schedule": "11월 30일 | 2:00 PT / 11:00 CET"
+      },
+      "LBF": {
+        "label": "패자 결승",
+        "schedule": "11월 30일 | 3:45 PT / 12:45 CET"
+      },
+      "FINALS": {
+        "label": "그랜드 파이널",
+        "schedule": "11월 30일 | 6:30 PT / 15:30 CET"
+      }
+    }
+  }
+}
+

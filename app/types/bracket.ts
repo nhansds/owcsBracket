@@ -29,13 +29,13 @@ export type MatchSlotSource =
 
 export interface MatchDefinition {
   id: string
-  label: string
+  labelKey: string
   stage: MatchStage
-  roundLabel: string
+  roundLabelKey: string
   bestOf: SeriesFormat
   slots: [MatchSlotSource, MatchSlotSource]
   matchNumber?: string
-  scheduleLabel: string
+  scheduleLabelKey: string
   scheduleIso?: string
 }
 

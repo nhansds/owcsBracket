@@ -5,28 +5,34 @@
         class="grid gap-6 rounded-3xl border border-white/15 bg-white/10 p-6 shadow-inner lg:grid-cols-[2.5fr,1fr]"
       >
         <div class="space-y-3">
-          <h2 class="text-2xl font-semibold">Bracket rules</h2>
+          <h2 class="text-2xl font-semibold">{{ t('bracket.rules.heading') }}</h2>
           <p class="text-sm text-slate-300">
-            The OWCS 2025 World Finals use a 12-team double-elimination bracket. Regional top seeds
-            start directly in round two, opening matches are played
-            <span class="font-semibold text-secondary-200">First to 2</span>, the rest are
-            <span class="font-semibold text-secondary-200">First to 3</span> except the Grand Final,
-            which is played <span class="font-semibold text-secondary-200">First to 4</span>.
+            {{ t('bracket.rules.paragraph1.part1') }}
+            <span class="font-semibold text-secondary-200">
+              {{ t('bracket.rules.firstTo2') }}
+            </span>
+            {{ t('bracket.rules.paragraph1.part2') }}
+            <span class="font-semibold text-secondary-200">
+              {{ t('bracket.rules.firstTo3') }}
+            </span>
+            {{ t('bracket.rules.paragraph1.part3') }}
+            <span class="font-semibold text-secondary-200">
+              {{ t('bracket.rules.firstTo4') }}
+            </span>{{ t('bracket.rules.paragraph1.ending') }}
           </p>
           <p class="text-sm text-slate-300">
-            Click any team to pick a winner, then set the score. Every result automatically propagates
-            to the next matches.
+            {{ t('bracket.rules.paragraph2') }}
           </p>
         </div>
         <aside
           class="flex flex-col gap-4 rounded-2xl border border-white/15 bg-slate-900/60 p-4 text-sm shadow-glow"
         >
           <div class="flex items-center justify-between">
-            <span class="text-slate-400">Total matches</span>
+            <span class="text-slate-400">{{ t('bracket.stats.totalMatches') }}</span>
             <span class="font-semibold text-white">{{ matches.length }}</span>
           </div>
           <div class="flex items-center justify-between">
-            <span class="text-slate-400">Matches completed</span>
+            <span class="text-slate-400">{{ t('bracket.stats.matchesCompleted') }}</span>
             <span class="font-semibold text-white">{{ completedMatches }}</span>
           </div>
           <button
@@ -34,10 +40,10 @@
             class="rounded-xl border border-white/15 bg-white/15 px-4 py-2 text-sm font-semibold text-white transition hover:bg-white/25"
             @click="resetBracket"
           >
-            Reset all
+            {{ t('bracket.actions.resetAll') }}
           </button>
           <div class="space-y-2">
-            <label class="text-xs uppercase tracking-[0.3em] text-slate-500">Shareable link</label>
+            <label class="text-xs uppercase tracking-[0.3em] text-slate-500">{{ t('bracket.share.label') }}</label>
             <div class="flex gap-2">
               <input
                 :value="shareUrl"
@@ -49,7 +55,7 @@
                 class="rounded-xl bg-primary/80 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-white transition hover:bg-primary"
                 @click="copyShareLink"
               >
-                Copy
+                {{ t('ui.actions.copy') }}
               </button>
             </div>
           </div>
@@ -76,6 +82,7 @@
 
 <script setup lang="ts">
 import { computed, onMounted, ref, watch } from 'vue'
+import { useI18n } from 'vue-i18n'
 import BracketTree from '../../app/components/BracketTree.vue'
 import TeamsList from '../../app/components/TeamsList.vue'
 import { useBracket } from '../../app/composables/useBracket'
@@ -92,6 +99,7 @@ const {
 } = useBracket()
 const route = useRoute()
 const router = useRouter()
+const { t } = useI18n()
 
 const collectMatches = (ids: string[]) =>
   ids
@@ -100,15 +108,15 @@ const collectMatches = (ids: string[]) =>
 
 const bracketLayout = computed(() => ({
   upperColumns: [
-    { title: 'Upper Round 1', matches: collectMatches(['M4', 'M3', 'M1', 'M2']) },
-    { title: 'Upper Round 2', matches: collectMatches(['M5', 'M6', 'M7', 'M8']) },
-    { title: 'Upper Semifinals', matches: collectMatches(['M15', 'M16']) }
+    { titleKey: 'bracket.rounds.upperRound1', matches: collectMatches(['M4', 'M3', 'M1', 'M2']) },
+    { titleKey: 'bracket.rounds.upperRound2', matches: collectMatches(['M5', 'M6', 'M7', 'M8']) },
+    { titleKey: 'bracket.rounds.upperSemifinals', matches: collectMatches(['M15', 'M16']) }
   ],
   lowerColumns: [
-    { title: 'Lower Round 1', matches: collectMatches(['M9', 'M10', 'M11', 'M12']) },
-    { title: 'Lower Round 2', matches: collectMatches(['M13', 'M14']) },
-    { title: 'Lower Round 3', matches: collectMatches(['M17', 'M18']) },
-    { title: 'Lower Semifinal', matches: collectMatches(['M19']) }
+    { titleKey: 'bracket.rounds.lowerRound1', matches: collectMatches(['M9', 'M10', 'M11', 'M12']) },
+    { titleKey: 'bracket.rounds.lowerRound2', matches: collectMatches(['M13', 'M14']) },
+    { titleKey: 'bracket.rounds.lowerRound3', matches: collectMatches(['M17', 'M18']) },
+    { titleKey: 'bracket.rounds.lowerSemifinal', matches: collectMatches(['M19']) }
   ],
   finals: {
     upperFinal: matchesById.value['UBF'] ?? null,
@@ -166,10 +174,10 @@ const copyShareLink = async () => {
   if (!process.client || !shareUrl.value) return
   try {
     await navigator.clipboard.writeText(shareUrl.value)
-    shareStatus.value = 'Link copied to clipboard ✅'
+    shareStatus.value = t('bracket.share.success')
   } catch (error) {
     console.error(error)
-    shareStatus.value = 'Couldn’t copy automatically, please select the link.'
+    shareStatus.value = t('bracket.share.failure')
   }
 }
 

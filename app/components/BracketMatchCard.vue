@@ -3,7 +3,7 @@
     class="rounded-2xl border border-stroke/60 bg-panel/70 p-4 shadow-glow backdrop-blur"
   >
     <div class="mb-3 flex items-center justify-between text-xs uppercase text-slate-400">
-      <span>{{ match.roundLabel }}</span>
+      <span>{{ t(match.roundLabelKey) }}</span>
       <span class="text-[11px] tracking-wide text-secondary-200">
         {{ match.matchNumber ? `${match.matchNumber} | ${match.bestOf}` : match.bestOf }}
       </span>
@@ -24,7 +24,7 @@
             <img
               v-if="team?.logo"
               :src="team.logo"
-              :alt="`${team?.shortName ?? 'Team'} logo`"
+              :alt="t('ui.team.logoAlt', { team: team?.shortName ?? t('ui.team.generic') })"
               class="h-6 w-6 object-contain"
               loading="lazy"
             />
@@ -36,10 +36,10 @@
           </div>
           <div class="flex flex-1 flex-col text-left">
             <span class="text-sm font-medium">
-              {{ team?.name ?? 'TBD' }}
+              {{ team?.name ?? t('ui.status.tbd') }}
             </span>
             <span class="text-[11px] text-slate-400">
-              {{ team ? `${team.region}` : 'TBD' }}
+              {{ team ? `${team.region}` : t('ui.status.tbd') }}
             </span>
           </div>
         <input
@@ -59,8 +59,8 @@
 
     <div class="mt-4 flex items-center justify-between text-xs text-slate-400">
       <div class="flex items-center gap-1">
-        <span v-if="match.winner" class="text-primary">Winner:</span>
-        <span>{{ match.winner?.name ?? 'Pending' }}</span>
+        <span v-if="match.winner" class="text-primary">{{ t('ui.node.winnerLabel') }}:</span>
+        <span>{{ match.winner?.name ?? t('ui.status.pending') }}</span>
       </div>
       <button
         v-if="match.result.winnerSlot !== null || match.result.score.some(value => value !== null)"
@@ -68,7 +68,7 @@
         type="button"
         @click="clearMatch"
       >
-        Reset
+        {{ t('ui.actions.reset') }}
       </button>
     </div>
   </div>
@@ -76,12 +76,14 @@
 
 <script setup lang="ts">
 import type { HydratedMatch } from '~/types/bracket'
+import { useI18n } from 'vue-i18n'
 
 const props = defineProps<{
   match: HydratedMatch
 }>()
 
 const { setMatchResult, clearMatchResult } = useBracket()
+const { t } = useI18n()
 
 const rowClasses = (index: number, team: HydratedMatch['participants'][number]) => {
   const isWinner = props.match.result.winnerSlot === index
