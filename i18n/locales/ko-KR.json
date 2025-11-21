@@ -74,7 +74,15 @@
     "share": {
       "label": "공유 링크",
       "success": "링크를 클립보드에 복사했어요 ✅",
-      "failure": "자동 복사에 실패했어요. 링크를 직접 선택해주세요."
+      "failure": "자동 복사에 실패했어요. 링크를 직접 선택해주세요.",
+      "nameLabel": "브래킷 이름",
+      "namePlaceholder": "브래킷 이름을 입력하세요...",
+      "lockLabel": "브래킷 잠금",
+      "locked": "잠김",
+      "unlocked": "잠금 해제됨",
+      "completeMessage": "브래킷이 완성되었어요! 변경을 방지하려면 잠그세요.",
+      "lockNow": "지금 잠그기",
+      "incompleteWarning": "브래킷을 완성한 후 잠그세요."
     },
     "sections": {
       "upper": "승자 브래킷",

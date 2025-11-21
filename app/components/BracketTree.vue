@@ -14,6 +14,7 @@
                 v-for="match in column.matches"
                 :key="match.id"
                 :match="match"
+                :is-locked="isLocked"
               />
             </div>
           </div>
@@ -39,6 +40,7 @@
                 v-for="match in column.matches"
                 :key="match.id"
                 :match="match"
+                :is-locked="isLocked"
               />
             </div>
           </div>
@@ -59,7 +61,7 @@
         <template v-for="(entry, index) in finalMatches" :key="entry.label">
           <div class="bracket-finals-node">
             <p class="bracket-finals-label">{{ t(entry.labelKey) }}</p>
-            <BracketNode :match="entry.match" variant="final" />
+            <BracketNode :match="entry.match" variant="final" :is-locked="isLocked" />
           </div>
           <div v-if="index < finalMatches.length - 1" class="bracket-finals-connector" />
         </template>
@@ -89,6 +91,7 @@ const props = defineProps<{
   upperColumns: BracketColumn[]
   lowerColumns: BracketColumn[]
   finals: FinalsLayout
+  isLocked?: boolean
 }>()
 
 const { t } = useI18n()

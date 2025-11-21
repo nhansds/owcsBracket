@@ -20,8 +20,12 @@
         v-for="(team, index) in match.participants"
         :key="index"
         type="button"
-        class="flex w-full items-center gap-2 rounded-xl border border-white/15 bg-white/0 px-3 py-2 text-left transition"
-        :class="rowClasses(index, team)"
+        :disabled="isLocked || !team || !allParticipantsReady"
+        :class="[
+          'flex w-full items-center gap-2 rounded-xl border border-white/15 bg-white/0 px-3 py-2 text-left transition',
+          ...rowClasses(index, team),
+          isLocked && team && allParticipantsReady ? 'disabled:opacity-100 disabled:cursor-default' : 'disabled:cursor-not-allowed disabled:opacity-40'
+        ]"
         @click="() => selectWinner(index)"
       >
           <div
@@ -53,9 +57,12 @@
             min="0"
             :max="match.targetScore"
             step="1"
-            :disabled="!team"
+            :disabled="!team || isLocked"
             :value="scoreValue(index)"
-            class="h-10 w-16 rounded-lg border border-white/15 bg-slate-950/60 text-center text-base font-semibold text-white focus:border-primary focus:outline-none disabled:opacity-40"
+            :class="[
+              'h-10 w-16 rounded-lg border border-white/15 bg-slate-950/60 text-center text-base font-semibold text-white focus:border-primary focus:outline-none',
+              isLocked && team ? 'disabled:opacity-100 disabled:cursor-default' : 'disabled:opacity-40 disabled:cursor-not-allowed'
+            ]"
             @input="event => updateScore(index, (event.target as HTMLInputElement).value)"
             @click.stop
             @mousedown.stop
@@ -71,7 +78,11 @@
       <button
         v-if="match.result.winnerSlot !== null || match.result.score.some(value => value !== null)"
         type="button"
-        class="text-[10px] font-semibold tracking-[0.3em] text-slate-500 hover:text-white"
+        :disabled="isLocked"
+        :class="[
+          'text-[10px] font-semibold tracking-[0.3em]',
+          isLocked ? 'text-slate-400 cursor-default' : 'text-slate-500 hover:text-white'
+        ]"
         @click="clearMatch"
       >
         {{ t('ui.actions.reset') }}
@@ -89,6 +100,7 @@ import type { HydratedMatch, MatchSlotSource } from '~/types/bracket'
 const props = defineProps<{
   match: HydratedMatch
   variant?: 'standard' | 'final'
+  isLocked?: boolean
 }>()
 
 const { setMatchResult, clearMatchResult } = useBracket()
@@ -156,9 +168,18 @@ const allParticipantsReady = computed(() => props.match.participants.every(Boole
 
 const rowClasses = (index: number, team: HydratedMatch['participants'][number]) => {
   const isWinner = props.match.result.winnerSlot === index
-  const canInteract = Boolean(team) && allParticipantsReady.value
+  const canInteract = Boolean(team) && allParticipantsReady.value && !props.isLocked
+  const isLockedButReady = props.isLocked && Boolean(team) && allParticipantsReady.value
+  
+  let cursorClass = 'cursor-not-allowed opacity-40'
+  if (canInteract) {
+    cursorClass = 'cursor-pointer hover:border-primary/70 hover:bg-primary/5'
+  } else if (isLockedButReady) {
+    cursorClass = 'cursor-default'
+  }
+  
   return [
-    canInteract ? 'cursor-pointer hover:border-primary/70 hover:bg-primary/5' : 'cursor-not-allowed opacity-40',
+    cursorClass,
     isWinner ? 'border-primary/70 bg-primary/5' : 'border-white/20'
   ]
 }
@@ -166,6 +187,7 @@ const rowClasses = (index: number, team: HydratedMatch['participants'][number]) 
 const scoreValue = (index: number) => props.match.result.score[index] ?? ''
 
 const updateScore = (index: number, rawValue: string) => {
+  if (props.isLocked) return
   const parsed =
     rawValue === ''
       ? null
@@ -192,6 +214,7 @@ const updateScore = (index: number, rawValue: string) => {
 }
 
 const selectWinner = (index: number) => {
+  if (props.isLocked) return
   const team = props.match.participants[index]
   if (!team || !allParticipantsReady.value) return
   const opponentIndex = index === 0 ? 1 : 0
@@ -205,6 +228,7 @@ const selectWinner = (index: number) => {
 }
 
 const clearMatch = () => {
+  if (props.isLocked) return
   clearMatchResult(props.match.id)
 }
 </script>

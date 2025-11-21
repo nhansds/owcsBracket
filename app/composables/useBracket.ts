@@ -63,6 +63,7 @@ const bytesFromBase64url = (payload: string) => {
 
 export const useBracket = () => {
   const results = useState<BracketResultRecord>('bracket-results', () => ({}))
+  const isLocked = useState<boolean>('bracket-locked', () => false)
 
   const readResult = (matchId: string): MatchResult =>
     results.value[matchId] ?? defaultResult()
@@ -130,6 +131,7 @@ export const useBracket = () => {
   }
 
   const setMatchResult = (matchId: string, data: Partial<MatchResult>) => {
+    if (isLocked.value) return
     const targetScore = getTargetScoreForMatch(matchId)
     const current = readResult(matchId)
     const merged: MatchResult = {
@@ -150,6 +152,7 @@ export const useBracket = () => {
   }
 
   const clearMatchResult = (matchId: string) => {
+    if (isLocked.value) return
     if (results.value[matchId]) {
       const { [matchId]: _, ...rest } = results.value
       results.value = rest
@@ -157,6 +160,7 @@ export const useBracket = () => {
   }
 
   const resetBracket = () => {
+    if (isLocked.value) return
     results.value = {}
   }
 
@@ -254,7 +258,8 @@ export const useBracket = () => {
     clearMatchResult,
     resetBracket,
     encodeBracketState,
-    decodeBracketState
+    decodeBracketState,
+    isLocked
   }
 }
 

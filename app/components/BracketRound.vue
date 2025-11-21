@@ -4,7 +4,7 @@
       {{ title }}
     </header>
     <div class="space-y-4">
-      <BracketMatchCard v-for="match in matches" :key="match.id" :match="match" />
+      <BracketMatchCard v-for="match in matches" :key="match.id" :match="match" :is-locked="isLocked" />
     </div>
   </section>
 </template>
@@ -16,6 +16,7 @@ import type { HydratedMatch } from '~/types/bracket'
 defineProps<{
   title: string
   matches: HydratedMatch[]
+  isLocked?: boolean
 }>()
 </script>
 

@@ -14,8 +14,12 @@
         v-for="(team, index) in match.participants"
         :key="index"
         type="button"
-        class="flex w-full items-center gap-3 rounded-xl px-3 py-2 transition"
-        :class="rowClasses(index, team)"
+        :disabled="isLocked || !team"
+        :class="[
+          'flex w-full items-center gap-3 rounded-xl px-3 py-2 transition',
+          ...rowClasses(index, team),
+          isLocked && team ? 'disabled:opacity-100 disabled:cursor-default' : 'disabled:cursor-not-allowed disabled:opacity-40'
+        ]"
         @click="() => selectWinner(index)"
       >
           <div
@@ -47,9 +51,12 @@
             min="0"
           :max="match.targetScore"
             step="1"
-            :disabled="!team"
+            :disabled="!team || isLocked"
             :value="scoreValue(index)"
-            class="h-11 w-16 rounded-lg border border-stroke bg-transparent text-center text-lg font-semibold text-white focus:border-primary focus:outline-none disabled:opacity-40"
+            :class="[
+              'h-11 w-16 rounded-lg border border-stroke bg-transparent text-center text-lg font-semibold text-white focus:border-primary focus:outline-none',
+              isLocked && team ? 'disabled:opacity-100 disabled:cursor-default' : 'disabled:opacity-40 disabled:cursor-not-allowed'
+            ]"
             @input="event => updateScore(index, (event.target as HTMLInputElement).value)"
             @click.stop
           @mousedown.stop
@@ -64,8 +71,12 @@
       </div>
       <button
         v-if="match.result.winnerSlot !== null || match.result.score.some(value => value !== null)"
-        class="text-[11px] uppercase tracking-wide text-slate-500 hover:text-slate-200"
+        :class="[
+          'text-[11px] uppercase tracking-wide',
+          isLocked ? 'text-slate-400 cursor-default' : 'text-slate-500 hover:text-slate-200'
+        ]"
         type="button"
+        :disabled="isLocked"
         @click="clearMatch"
       >
         {{ t('ui.actions.reset') }}
@@ -80,6 +91,7 @@ import { useI18n } from 'vue-i18n'
 
 const props = defineProps<{
   match: HydratedMatch
+  isLocked?: boolean
 }>()
 
 const { setMatchResult, clearMatchResult } = useBracket()
@@ -87,9 +99,15 @@ const { t } = useI18n()
 
 const rowClasses = (index: number, team: HydratedMatch['participants'][number]) => {
   const isWinner = props.match.result.winnerSlot === index
+  
+  let cursorClass = 'opacity-50 cursor-not-allowed'
+  if (team) {
+    cursorClass = props.isLocked ? 'cursor-default' : 'cursor-pointer hover:border-primary/80'
+  }
+  
   return [
     'border border-stroke',
-    team ? 'cursor-pointer hover:border-primary/80' : 'opacity-50 cursor-not-allowed',
+    cursorClass,
     isWinner ? 'border-primary/80 bg-primary/5' : ''
   ]
 }
@@ -97,6 +115,7 @@ const rowClasses = (index: number, team: HydratedMatch['participants'][number]) 
 const scoreValue = (index: number) => props.match.result.score[index] ?? ''
 
 const updateScore = (index: number, rawValue: string) => {
+  if (props.isLocked) return
   const parsed =
     rawValue === '' ? null : Math.max(0, Math.min(props.match.targetScore, Number(rawValue)))
   const nextScore = [...props.match.result.score] as [number | null, number | null]
@@ -121,6 +140,7 @@ const updateScore = (index: number, rawValue: string) => {
 }
 
 const selectWinner = (index: number) => {
+  if (props.isLocked) return
   const team = props.match.participants[index]
   if (!team) return
   const opponentIndex = index === 0 ? 1 : 0
@@ -139,6 +159,7 @@ const selectWinner = (index: number) => {
 }
 
 const clearMatch = () => {
+  if (props.isLocked) return
   clearMatchResult(props.match.id)
 }
 </script>

@@ -74,7 +74,15 @@
     "share": {
       "label": "Shareable link",
       "success": "Link copied to clipboard ✅",
-      "failure": "Couldn't copy automatically, please select the link."
+      "failure": "Couldn't copy automatically, please select the link.",
+      "nameLabel": "Bracket name",
+      "namePlaceholder": "Enter bracket name...",
+      "lockLabel": "Lock bracket",
+      "locked": "Locked",
+      "unlocked": "Unlocked",
+      "completeMessage": "Your bracket is complete! Lock it to prevent changes.",
+      "lockNow": "Lock now",
+      "incompleteWarning": "Complete your bracket before locking it."
     },
     "sections": {
       "upper": "Upper Bracket",

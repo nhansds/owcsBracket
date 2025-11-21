@@ -74,7 +74,15 @@
     "share": {
       "label": "Lien partageable",
       "success": "Lien copié dans le presse-papiers ✅",
-      "failure": "Copie impossible automatiquement, sélectionne le lien."
+      "failure": "Copie impossible automatiquement, sélectionne le lien.",
+      "nameLabel": "Nom du bracket",
+      "namePlaceholder": "Entrer le nom du bracket...",
+      "lockLabel": "Verrouiller le bracket",
+      "locked": "Verrouillé",
+      "unlocked": "Déverrouillé",
+      "completeMessage": "Votre bracket est complet ! Verrouillez-le pour empêcher les modifications.",
+      "lockNow": "Verrouiller maintenant",
+      "incompleteWarning": "Complétez votre bracket avant de le verrouiller."
     },
     "sections": {
       "upper": "Upper Bracket",

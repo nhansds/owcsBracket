@@ -37,13 +37,56 @@
           </div>
           <button
             type="button"
-            class="rounded-xl border border-white/15 bg-white/15 px-4 py-2 text-sm font-semibold text-white transition hover:bg-white/25"
-            @click="resetBracket"
+            :disabled="isLocked"
+            class="rounded-xl border border-white/15 bg-white/15 px-4 py-2 text-sm font-semibold text-white transition hover:bg-white/25 disabled:opacity-40 disabled:cursor-not-allowed"
+            @click="handleResetBracket"
           >
             {{ t('bracket.actions.resetAll') }}
           </button>
           <div class="space-y-2">
             <label class="text-xs uppercase tracking-[0.3em] text-slate-500">{{ t('bracket.share.label') }}</label>
+            <div class="space-y-2">
+              <input
+                v-model="bracketName"
+                type="text"
+                :placeholder="t('bracket.share.namePlaceholder')"
+                class="w-full rounded-xl border border-stroke bg-slate-950/60 px-3 py-2 text-[13px] text-white placeholder:text-slate-500 focus:border-primary focus:outline-none"
+                @input="updateUrlParams"
+              />
+              <div class="flex items-center justify-between rounded-xl border border-white/15 bg-slate-950/60 px-3 py-2">
+                <label class="text-[13px] text-slate-300">{{ t('bracket.share.lockLabel') }}</label>
+                <button
+                  type="button"
+                  :disabled="!isLocked && !isBracketComplete"
+                  class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-xs font-semibold transition disabled:opacity-40 disabled:cursor-not-allowed"
+                  :class="isLocked ? 'bg-red-500/20 text-red-300 hover:bg-red-500/30' : 'bg-green-500/20 text-green-300 hover:bg-green-500/30'"
+                  @click="toggleLock"
+                >
+                  <span>{{ isLocked ? t('bracket.share.locked') : t('bracket.share.unlocked') }}</span>
+                </button>
+              </div>
+              <p
+                v-if="!isBracketComplete && !isLocked"
+                class="text-xs text-slate-400"
+              >
+                {{ t('bracket.share.incompleteWarning') }}
+              </p>
+              <div
+                v-if="isBracketComplete && !isLocked"
+                class="rounded-xl border border-secondary-200/30 bg-secondary-200/10 px-3 py-2"
+              >
+                <p class="mb-2 text-xs text-secondary-200">
+                  {{ t('bracket.share.completeMessage') }}
+                </p>
+                <button
+                  type="button"
+                  class="w-full rounded-lg bg-secondary-200/20 px-3 py-1.5 text-xs font-semibold text-secondary-200 transition hover:bg-secondary-200/30"
+                  @click="toggleLock"
+                >
+                  {{ t('bracket.share.lockNow') }}
+                </button>
+              </div>
+            </div>
             <div class="flex gap-2">
               <input
                 :value="shareUrl"
@@ -75,6 +118,7 @@
         :upper-columns="bracketLayout.upperColumns"
         :lower-columns="bracketLayout.lowerColumns"
         :finals="bracketLayout.finals"
+        :is-locked="isLocked"
       />
     </div>
   </div>
@@ -95,7 +139,10 @@ const {
   results,
   resetBracket,
   encodeBracketState,
-  decodeBracketState
+  decodeBracketState,
+  setMatchResult,
+  clearMatchResult,
+  isLocked: bracketIsLocked
 } = useBracket()
 const route = useRoute()
 const router = useRouter()
@@ -128,10 +175,20 @@ const completedMatches = computed(
   () => matches.value.filter((match: HydratedMatch) => match.result.winnerSlot !== null).length
 )
 
+const isBracketComplete = computed(() => {
+  // Le bracket est complet quand le match final (FINALS) a un vainqueur
+  const grandFinal = matchesById.value['FINALS']
+  return grandFinal?.result.winnerSlot !== null && grandFinal?.result.winnerSlot !== undefined
+})
+
 const shareToken = ref('')
 const shareStatus = ref('')
 const initialized = ref(false)
+const bracketName = ref('')
 const runtimeConfig = useRuntimeConfig()
+
+// Synchronize isLocked with shared state
+const isLocked = bracketIsLocked
 
 const shareUrl = computed(() => {
   if (!process.client) return ''
@@ -140,7 +197,18 @@ const shareUrl = computed(() => {
   const normalizedBase = basePath.endsWith('/') ? basePath : `${basePath}/`
   const pathSuffix = route.path === '/' ? '' : route.path.replace(/^\//, '')
   const base = `${origin}${normalizedBase}${pathSuffix}`
-  return shareToken.value ? `${base}?state=${shareToken.value}` : base
+  const params = new URLSearchParams()
+  if (shareToken.value) {
+    params.set('state', shareToken.value)
+  }
+  if (bracketName.value) {
+    params.set('name', bracketName.value)
+  }
+  if (isLocked.value) {
+    params.set('locked', 'true')
+  }
+  const queryString = params.toString()
+  return queryString ? `${base}?${queryString}` : base
 })
 
 onMounted(() => {
@@ -149,6 +217,11 @@ onMounted(() => {
     decodeBracketState(initial)
   }
   shareToken.value = encodeBracketState()
+  
+  // Read bracket name and lock state from URL
+  bracketName.value = typeof route.query.name === 'string' ? route.query.name : ''
+  bracketIsLocked.value = route.query.locked === 'true'
+  
   initialized.value = true
 })
 
@@ -159,16 +232,61 @@ watch(
     const nextToken = encodeBracketState()
     if (nextToken === shareToken.value) return
     shareToken.value = nextToken
-    const nextQuery = { ...route.query }
-    if (nextToken) {
-      nextQuery.state = nextToken
-    } else {
-      delete nextQuery.state
-    }
-    router.replace({ query: nextQuery })
+    updateUrlParams()
   },
   { deep: true }
 )
+
+const updateUrlParams = () => {
+  if (!process.client || !initialized.value) return
+  const nextQuery: Record<string, string> = {}
+  
+  // Copy existing query params (excluding the ones we manage)
+  for (const [key, value] of Object.entries(route.query)) {
+    if (key !== 'state' && key !== 'name' && key !== 'locked') {
+      if (typeof value === 'string') {
+        nextQuery[key] = value
+      } else if (Array.isArray(value) && value.length > 0 && typeof value[0] === 'string') {
+        nextQuery[key] = value[0]
+      }
+    }
+  }
+  
+  if (shareToken.value) {
+    nextQuery.state = shareToken.value
+  }
+  
+  if (bracketName.value) {
+    nextQuery.name = bracketName.value
+  }
+  
+  if (isLocked.value) {
+    nextQuery.locked = 'true'
+  }
+  
+  router.replace({ query: nextQuery })
+}
+
+const toggleLock = () => {
+  // Permettre le déverrouillage à tout moment
+  if (isLocked.value) {
+    isLocked.value = false
+    updateUrlParams()
+    return
+  }
+  
+  // Empêcher le verrouillage si le bracket n'est pas complet
+  if (!isBracketComplete.value) {
+    return
+  }
+  
+  isLocked.value = true
+  updateUrlParams()
+}
+
+const handleResetBracket = () => {
+  resetBracket()
+}
 
 const copyShareLink = async () => {
   if (!process.client || !shareUrl.value) return
