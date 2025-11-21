@@ -7,6 +7,7 @@ const matches: MatchDefinition[] = [
     stage: 'upper',
     roundLabel: 'Upper Round 1',
     bestOf: 'FT2',
+  scheduleLabel: 'Nov 26 | 3:00 PT / 12:00 CET',
     matchNumber: 'M1',
     slots: [
       { type: 'team', teamId: 'team-cc' },
@@ -19,6 +20,7 @@ const matches: MatchDefinition[] = [
     stage: 'upper',
     roundLabel: 'Upper Round 1',
     bestOf: 'FT2',
+  scheduleLabel: 'Nov 26 | 4:15 PT / 13:15 CET',
     matchNumber: 'M2',
     slots: [
       { type: 'team', teamId: 'team-falcons' },
@@ -31,6 +33,7 @@ const matches: MatchDefinition[] = [
     stage: 'upper',
     roundLabel: 'Upper Round 1',
     bestOf: 'FT2',
+  scheduleLabel: 'Nov 26 | 5:30 PT / 14:30 CET',
     matchNumber: 'M3',
     slots: [
       { type: 'team', teamId: 'al-qadsiah' },
@@ -43,6 +46,7 @@ const matches: MatchDefinition[] = [
     stage: 'upper',
     roundLabel: 'Upper Round 1',
     bestOf: 'FT2',
+  scheduleLabel: 'Nov 26 | 6:45 PT / 15:45 CET',
     matchNumber: 'M4',
     slots: [
       { type: 'team', teamId: 'spacestation' },
@@ -55,6 +59,7 @@ const matches: MatchDefinition[] = [
     stage: 'upper',
     roundLabel: 'Upper Round 2',
     bestOf: 'FT3',
+  scheduleLabel: 'Nov 27 | 3:00 PT / 12:00 CET',
     matchNumber: 'M5',
     slots: [
       { type: 'team', teamId: 'crazy-raccoon' },
@@ -67,6 +72,7 @@ const matches: MatchDefinition[] = [
     stage: 'upper',
     roundLabel: 'Upper Round 2',
     bestOf: 'FT3',
+  scheduleLabel: 'Nov 27 | 4:45 PT / 13:45 CET',
     matchNumber: 'M6',
     slots: [
       { type: 'team', teamId: 'weibo-gaming' },
@@ -79,6 +85,7 @@ const matches: MatchDefinition[] = [
     stage: 'upper',
     roundLabel: 'Upper Round 2',
     bestOf: 'FT3',
+  scheduleLabel: 'Nov 27 | 6:30 PT / 15:30 CET',
     matchNumber: 'M7',
     slots: [
       { type: 'team', teamId: 'twisted-minds' },
@@ -91,6 +98,7 @@ const matches: MatchDefinition[] = [
     stage: 'upper',
     roundLabel: 'Upper Round 2',
     bestOf: 'FT3',
+  scheduleLabel: 'Nov 27 | 8:15 PT / 17:15 CET',
     matchNumber: 'M8',
     slots: [
       { type: 'team', teamId: 'team-liquid' },
@@ -103,6 +111,7 @@ const matches: MatchDefinition[] = [
     stage: 'lower',
     roundLabel: 'Lower Round 1',
     bestOf: 'FT2',
+  scheduleLabel: 'Nov 28 | 3:00 PT / 12:00 CET',
     matchNumber: 'M9',
     slots: [
       { type: 'loser', matchId: 'M8' },
@@ -115,6 +124,7 @@ const matches: MatchDefinition[] = [
     stage: 'lower',
     roundLabel: 'Lower Round 1',
     bestOf: 'FT2',
+  scheduleLabel: 'Nov 28 | 4:15 PT / 13:15 CET',
     matchNumber: 'M10',
     slots: [
       { type: 'loser', matchId: 'M7' },
@@ -127,6 +137,7 @@ const matches: MatchDefinition[] = [
     stage: 'lower',
     roundLabel: 'Lower Round 1',
     bestOf: 'FT2',
+  scheduleLabel: 'Nov 28 | 5:30 PT / 14:30 CET',
     matchNumber: 'M11',
     slots: [
       { type: 'loser', matchId: 'M6' },
@@ -139,6 +150,7 @@ const matches: MatchDefinition[] = [
     stage: 'lower',
     roundLabel: 'Lower Round 1',
     bestOf: 'FT2',
+  scheduleLabel: 'Nov 28 | 6:45 PT / 15:45 CET',
     matchNumber: 'M12',
     slots: [
       { type: 'loser', matchId: 'M5' },
@@ -151,6 +163,7 @@ const matches: MatchDefinition[] = [
     stage: 'lower',
     roundLabel: 'Lower Round 2',
     bestOf: 'FT3',
+  scheduleLabel: 'Nov 28 | 8:00 PT / 17:00 CET',
     matchNumber: 'M13',
     slots: [
       { type: 'winner', matchId: 'M9' },
@@ -163,6 +176,7 @@ const matches: MatchDefinition[] = [
     stage: 'lower',
     roundLabel: 'Lower Round 2',
     bestOf: 'FT3',
+  scheduleLabel: 'Nov 28 | 9:45 PT / 18:45 CET',
     matchNumber: 'M14',
     slots: [
       { type: 'winner', matchId: 'M11' },
@@ -175,6 +189,7 @@ const matches: MatchDefinition[] = [
     stage: 'upper',
     roundLabel: 'Upper Semifinals',
     bestOf: 'FT3',
+  scheduleLabel: 'Nov 29 | 3:45 PT / 12:45 CET',
     matchNumber: 'M15',
     slots: [
       { type: 'winner', matchId: 'M5' },
@@ -187,6 +202,7 @@ const matches: MatchDefinition[] = [
     stage: 'upper',
     roundLabel: 'Upper Semifinals',
     bestOf: 'FT3',
+  scheduleLabel: 'Nov 29 | 5:30 PT / 14:30 CET',
     matchNumber: 'M16',
     slots: [
       { type: 'winner', matchId: 'M7' },
@@ -199,6 +215,7 @@ const matches: MatchDefinition[] = [
     stage: 'lower',
     roundLabel: 'Lower Round 3',
     bestOf: 'FT3',
+  scheduleLabel: 'Nov 29 | 5:30 PT / 14:30 CET',
     matchNumber: 'M17',
     slots: [
       { type: 'loser', matchId: 'M15' },
@@ -211,6 +228,7 @@ const matches: MatchDefinition[] = [
     stage: 'lower',
     roundLabel: 'Lower Round 3',
     bestOf: 'FT3',
+  scheduleLabel: 'Nov 29 | 7:15 PT / 16:15 CET',
     matchNumber: 'M18',
     slots: [
       { type: 'loser', matchId: 'M16' },
@@ -223,6 +241,7 @@ const matches: MatchDefinition[] = [
     stage: 'lower',
     roundLabel: 'Lower Semifinal',
     bestOf: 'FT3',
+  scheduleLabel: 'Nov 29 | 9:30 PT / 18:30 CET',
     matchNumber: 'M19',
     slots: [
       { type: 'winner', matchId: 'M17' },
@@ -235,6 +254,7 @@ const matches: MatchDefinition[] = [
     stage: 'upper',
     roundLabel: 'Upper Final',
     bestOf: 'FT3',
+  scheduleLabel: 'Nov 30 | 2:00 PT / 11:00 CET',
     matchNumber: 'UBF',
     slots: [
       { type: 'winner', matchId: 'M15' },
@@ -247,6 +267,7 @@ const matches: MatchDefinition[] = [
     stage: 'lower',
     roundLabel: 'Lower Final',
     bestOf: 'FT3',
+  scheduleLabel: 'Nov 30 | 3:45 PT / 12:45 CET',
     matchNumber: 'LBF',
     slots: [
       { type: 'loser', matchId: 'UBF' },
@@ -259,6 +280,7 @@ const matches: MatchDefinition[] = [
     stage: 'final',
     roundLabel: 'Grand Final',
     bestOf: 'FT4',
+  scheduleLabel: 'Nov 30 | 6:30 PT / 15:30 CET',
     matchNumber: 'FINALS',
     slots: [
       { type: 'winner', matchId: 'UBF' },

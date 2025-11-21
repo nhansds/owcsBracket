@@ -35,6 +35,8 @@ export interface MatchDefinition {
   bestOf: SeriesFormat
   slots: [MatchSlotSource, MatchSlotSource]
   matchNumber?: string
+  scheduleLabel: string
+  scheduleIso?: string
 }
 
 export interface MatchResult {

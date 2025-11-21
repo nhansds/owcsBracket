@@ -1,10 +1,18 @@
 <template>
   <div :class="nodeClasses">
-    <header class="mb-3 flex items-center justify-between text-[11px] uppercase tracking-[0.2em] text-slate-400">
-      <span class="truncate">{{ match.roundLabel }}</span>
-      <span class="font-semibold text-secondary-200">
-        {{ match.matchNumber ? `${match.matchNumber} | ${match.bestOf}` : match.bestOf }}
-      </span>
+    <header class="mb-3 text-[11px] uppercase tracking-[0.2em] text-slate-400">
+      <div class="flex items-center justify-between gap-3">
+        <span class="truncate">{{ match.roundLabel }}</span>
+        <span class="font-semibold text-secondary-200">
+          {{ match.matchNumber ? `${match.matchNumber} | ${match.bestOf}` : match.bestOf }}
+        </span>
+      </div>
+      <p
+        v-if="match.scheduleLabel"
+        class="mt-1 text-[10px] font-semibold uppercase tracking-[0.25em] text-white/70"
+      >
+        {{ match.scheduleLabel }}
+      </p>
     </header>
 
     <div class="space-y-2">
@@ -34,10 +42,10 @@
           </div>
           <div class="flex flex-1 flex-col">
             <span class="text-sm font-semibold text-white">
-              {{ team?.name ?? 'To be decided' }}
+              {{ displayForRow(index).name }}
             </span>
             <span class="text-[11px] text-slate-400">
-              {{ team ? team.region : 'Pending' }}
+              {{ displayForRow(index).region }}
             </span>
           </div>
           <input
@@ -74,7 +82,8 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
-import type { HydratedMatch } from '~/types/bracket'
+import teams from '~/data/teams'
+import type { HydratedMatch, MatchSlotSource } from '~/types/bracket'
 
 const props = defineProps<{
   match: HydratedMatch
@@ -82,6 +91,54 @@ const props = defineProps<{
 }>()
 
 const { setMatchResult, clearMatchResult } = useBracket()
+
+type SlotDescriptor = {
+  name: string
+  region: string
+}
+
+const defaultSlotDescriptor: SlotDescriptor = {
+  name: 'To be decided',
+  region: 'Pending'
+}
+
+const teamDictionary = Object.fromEntries(teams.map(team => [team.id, team]))
+
+const describeSlot = (slot: MatchSlotSource): SlotDescriptor => {
+  if (slot.type === 'team') {
+    const fallbackTeam = teamDictionary[slot.teamId]
+    return {
+      name: fallbackTeam?.name ?? defaultSlotDescriptor.name,
+      region: fallbackTeam?.region ?? defaultSlotDescriptor.region
+    }
+  }
+  const isWinner = slot.type === 'winner'
+  const prefix = isWinner ? 'W -' : 'L -'
+  const shortCode = 'Pending'
+  return {
+    name: `${prefix} ${slot.matchId}`,
+    region: shortCode
+  }
+}
+
+const slotPlaceholders = computed<[SlotDescriptor, SlotDescriptor]>(() => {
+  return props.match.slots.map(slot => describeSlot(slot)) as [
+    SlotDescriptor,
+    SlotDescriptor
+  ]
+})
+
+const rowDetails = computed<[SlotDescriptor, SlotDescriptor]>(() => {
+  return props.match.participants.map((team, index) => {
+    if (team) {
+      return { name: team.name, region: team.region }
+    }
+    return slotPlaceholders.value[index] ?? defaultSlotDescriptor
+  }) as [SlotDescriptor, SlotDescriptor]
+})
+
+const displayForRow = (index: number): SlotDescriptor =>
+  rowDetails.value[index] ?? defaultSlotDescriptor
 
 const variantClass = computed(() =>
   props.variant === 'final'
@@ -94,10 +151,13 @@ const nodeClasses = computed(() => [
   variantClass.value
 ])
 
+const allParticipantsReady = computed(() => props.match.participants.every(Boolean))
+
 const rowClasses = (index: number, team: HydratedMatch['participants'][number]) => {
   const isWinner = props.match.result.winnerSlot === index
+  const canInteract = Boolean(team) && allParticipantsReady.value
   return [
-    team ? 'cursor-pointer hover:border-primary/70 hover:bg-primary/5' : 'cursor-not-allowed opacity-40',
+    canInteract ? 'cursor-pointer hover:border-primary/70 hover:bg-primary/5' : 'cursor-not-allowed opacity-40',
     isWinner ? 'border-primary/70 bg-primary/5' : 'border-white/20'
   ]
 }
@@ -132,16 +192,11 @@ const updateScore = (index: number, rawValue: string) => {
 
 const selectWinner = (index: number) => {
   const team = props.match.participants[index]
-  if (!team) return
+  if (!team || !allParticipantsReady.value) return
   const opponentIndex = index === 0 ? 1 : 0
   const nextScore = [...props.match.result.score] as [number | null, number | null]
   nextScore[index] = props.match.targetScore
-  if (
-    nextScore[opponentIndex] !== null &&
-    Number(nextScore[opponentIndex]) >= props.match.targetScore
-  ) {
-    nextScore[opponentIndex] = Math.max(props.match.targetScore - 1, 0)
-  }
+  nextScore[opponentIndex] = 0
   setMatchResult(props.match.id, {
     winnerSlot: index as 0 | 1,
     score: nextScore
