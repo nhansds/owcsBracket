@@ -50,7 +50,13 @@
               :alt="roleLabels[player.role]"
               loading="lazy"
             />
-            <span>{{ countryFlags[player.country] || '' }}</span>
+            <img
+              v-if="getCountryFlagUrl(player.country)"
+              class="h-3.5 w-5 rounded-sm border border-white/10 object-cover"
+              :src="getCountryFlagUrl(player.country)"
+              :alt="`${player.country} flag`"
+              loading="lazy"
+            />
             {{ player.name }}
           </span>
         </div>
@@ -71,6 +77,7 @@ import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 import type { PlayerRole } from '~/types/bracket'
 import { useTeamDetails } from '~/composables/useTeamDetails'
+import { getFlagUrlFromCountryName } from '~/utils/flags'
 
 const { activeTeam, setActiveTeam } = useTeamDetails()
 const { t } = useI18n()
@@ -93,22 +100,8 @@ const roleLabels = computed<Record<PlayerRole, string>>(() => ({
   support: t('teams.roles.support')
 }))
 
-const countryFlags: Record<string, string> = {
-  'South Korea': '🇰🇷',
-  'China': '🇨🇳',
-  'United States': '🇺🇸',
-  'Saudi Arabia': '🇸🇦',
-  'Japan': '🇯🇵',
-  'France': '🇫🇷',
-  'Sweden': '🇸🇪',
-  'Australia': '🇦🇺',
-  'Austria': '🇦🇹',
-  'Denmark': '🇩🇰',
-  'Estonia': '🇪🇪',
-  'Turkey': '🇹🇷',
-  'Ukraine': '🇺🇦',
-  'United Kingdom': '🇬🇧',
-  'Wales': '🏴󠁧󠁢󠁷󠁬󠁳󠁿'
+const getCountryFlagUrl = (countryName: string): string => {
+  return getFlagUrlFromCountryName(countryName)
 }
 </script>
 
